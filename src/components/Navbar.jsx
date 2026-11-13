@@ -1,9 +1,9 @@
 import React from 'react';
-import { GraduationCap, Github, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, Github, ShieldCheck, LogOut } from 'lucide-react';
 
-export default function Navbar({ candidateName = 'Muskan Gupta' }) {
+export default function Navbar({ candidateName = 'Muskan Gupta', onLogout }) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/[0.08] bg-dark-950/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-white/[0.08] bg-dark-950/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Brand Logo & Title with Magic UI Pro Minimalism */}
@@ -39,6 +39,18 @@ export default function Navbar({ candidateName = 'Muskan Gupta' }) {
                 <span>Verified Candidate</span>
               </div>
             </div>
+
+            {/* Logout / Switch Profile Button */}
+            {onLogout && (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="p-2 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-white/10 text-zinc-400 hover:text-rose-400 transition"
+                title="Sign Out / Switch Profile"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            )}
 
             <a
               href="https://github.com/muskanji1007-lang/CampusPulse"

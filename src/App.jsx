@@ -7,6 +7,7 @@ import ReadinessScoreCard from './components/ReadinessScoreCard';
 import SkillRadarChart from './components/SkillRadarChart';
 import CompanyEligibilityTable from './components/CompanyEligibilityTable';
 import ActionableRoadmap from './components/ActionableRoadmap';
+import AuthModal from './components/AuthModal';
 import { 
   calculateReadinessIndex, 
   evaluateTierEligibility, 
@@ -14,18 +15,27 @@ import {
   generateActionableRoadmap 
 } from './utils/analyticsEngine';
 import { loadStoredStudent, saveStoredStudent } from './utils/storage';
+import { getActiveUser, clearActiveUser, setActiveUser } from './utils/auth';
 import { INITIAL_STUDENT_STATE } from './data/companyBenchmarks';
-import { Share2, Check, ArrowRight } from 'lucide-react';
+import { Share2, Check, UserCheck } from 'lucide-react';
 
 export default function App() {
-  const [student, setStudent] = useState(() => loadStoredStudent());
+  const [currentUser, setCurrentUser] = useState(() => getActiveUser());
+  const [student, setStudent] = useState(() => {
+    const user = getActiveUser();
+    if (user) return user;
+    return loadStoredStudent();
+  });
   const [activeTab, setActiveTab] = useState('overview');
   const [copied, setCopied] = useState(false);
 
   // Sync to LocalStorage on update
   useEffect(() => {
-    saveStoredStudent(student);
-  }, [student]);
+    if (currentUser) {
+      saveStoredStudent(student);
+      setActiveUser(student);
+    }
+  }, [student, currentUser]);
 
   // Algorithmic derivations using useMemo for high performance
   const assessment = useMemo(() => calculateReadinessIndex(student), [student]);
@@ -35,7 +45,7 @@ export default function App() {
 
   // Trigger celebration confetti when readiness crosses into Tier 1 (85%+)
   useEffect(() => {
-    if (assessment.score >= 85) {
+    if (currentUser && assessment.score >= 85) {
       try {
         confetti({
           particleCount: 50,
@@ -47,7 +57,18 @@ export default function App() {
         // graceful fallback if canvas-confetti fails
       }
     }
-  }, [assessment.score]);
+  }, [assessment.score, currentUser]);
+
+  const handleLoginSuccess = (user) => {
+    setCurrentUser(user);
+    setStudent(user);
+    saveStoredStudent(user);
+  };
+
+  const handleLogout = () => {
+    clearActiveUser();
+    setCurrentUser(null);
+  };
 
   const handleReset = () => {
     setStudent(INITIAL_STUDENT_STATE);
@@ -68,8 +89,16 @@ Analyzed via CampusPulse Suite 🚀`;
 
   return (
     <div className="min-h-screen bg-dark-950 text-zinc-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-black">
+      {/* If not authenticated, show Auth Modal */}
+      {!currentUser && (
+        <AuthModal onLoginSuccess={handleLoginSuccess} />
+      )}
+
       {/* Top Navigation */}
-      <Navbar candidateName={student.fullName} />
+      <Navbar 
+        candidateName={student.fullName} 
+        onLogout={currentUser ? handleLogout : null}
+      />
 
       {/* Main Layout */}
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 flex flex-col lg:flex-row gap-6">

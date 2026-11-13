@@ -107,22 +107,22 @@ CampusPulse categorizes recruiters into three distinct recruitment tiers with st
 <table>
   <tr>
     <td width="50%">
-      <h3>🎯 Circular Placement Readiness Gauge</h3>
-      <p>An animated SVG gauge that recalibrates in real-time as users adjust their academic or skill metrics. Displays granular contribution breakdowns per subject.</p>
+      <h3>🔐 Student Auth & 1-Click Access</h3>
+      <p>Secure client-side onboarding with Sign-In, Custom Registration, and 1-Click Reviewer Access presets for seamless testing.</p>
     </td>
     <td width="50%">
-      <h3>🕸️ Multi-Axis Skill Gap Radar Chart</h3>
-      <p>Built with <code>Recharts</code> to visually compare individual student competencies against standardized industry expectations across 6 dimensions.</p>
+      <h3>🎯 Circular Readiness Gauge</h3>
+      <p>An animated SVG gauge that recalibrates in real-time as users adjust their academic or skill metrics. Displays granular contribution breakdowns per subject.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>🏢 Live Company Tier Matrix</h3>
-      <p>Instant evaluation showing whether the candidate qualifies for direct recruitment drives with color-coded checklists of missing criteria.</p>
+      <h3>🕸️ Multi-Axis Skill Gap Radar Chart</h3>
+      <p>Built with <code>Recharts</code> to visually compare individual student competencies against standardized industry expectations across 6 dimensions.</p>
     </td>
     <td width="50%">
-      <h3>🗺️ Actionable Prep Roadmap</h3>
-      <p>A prioritized, interactive checklist specifying target LeetCode modules and project goals, highlighting the estimated probability impact of each milestone.</p>
+      <h3>🏢 Live Company Tier Matrix</h3>
+      <p>Instant evaluation showing whether the candidate qualifies for direct recruitment drives with color-coded checklists of missing criteria.</p>
     </td>
   </tr>
 </table>
