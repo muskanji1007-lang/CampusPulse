@@ -1,6 +1,6 @@
 import React from 'react';
 import { CORE_SKILL_CATEGORIES } from '../data/companyBenchmarks';
-import { User, Award, BookOpen, Briefcase, RefreshCw, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { User, Award, BookOpen, Briefcase, RefreshCw, SlidersHorizontal } from 'lucide-react';
 
 export default function StudentProfileForm({ student, onUpdateStudent, onReset }) {
   const handleInputChange = (field, value) => {
@@ -70,49 +70,46 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
   };
 
   return (
-    <div className="glass-panel p-6 rounded-2xl space-y-6 relative overflow-hidden group">
-      <div className="absolute top-0 right-0 w-40 h-40 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="glass-panel p-6 rounded-2xl space-y-6 relative overflow-hidden">
       {/* Form Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-ai-800 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
         <div>
-          <h2 className="text-lg font-bold text-white flex items-center space-x-2">
-            <div className="p-1.5 rounded-lg bg-brand-500/15 border border-brand-500/30 text-brand-400">
+          <h2 className="text-base font-bold text-white flex items-center space-x-2.5">
+            <div className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-emerald-400">
               <SlidersHorizontal className="w-4 h-4" />
             </div>
-            <span>Interactive Profile & Skill Diagnostic</span>
+            <span>Profile & Skill Diagnostics</span>
           </h2>
-          <p className="text-xs text-slate-400">
-            Dynamically adjust academic benchmarks and skill proficiency to trigger real-time AI analytics.
+          <p className="text-xs text-zinc-400">
+            Adjust academic parameters and technical skill levels to trigger real-time recalculations.
           </p>
         </div>
 
-        {/* Preset Buttons with AI Violet Styling */}
+        {/* Preset Buttons with Magic UI Pro Minimalism */}
         <div className="flex items-center space-x-2">
-          <span className="text-[11px] text-slate-400 hidden md:inline">Quick Presets:</span>
+          <span className="text-[11px] text-zinc-400 hidden md:inline">Presets:</span>
           <button
             onClick={() => applyPreset('fresher')}
-            className="px-2.5 py-1 text-xs rounded-xl bg-ai-850 hover:bg-ai-800 border border-ai-700 text-slate-300 hover:text-white transition"
+            className="px-2.5 py-1 text-xs rounded-lg bg-zinc-900/80 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white transition"
           >
-            Entry Level
+            Entry
           </button>
           <button
             onClick={() => applyPreset('average')}
-            className="px-2.5 py-1 text-xs rounded-xl bg-ai-850 hover:bg-ai-800 border border-ai-700 text-brand-300 transition"
+            className="px-2.5 py-1 text-xs rounded-lg bg-zinc-900/80 hover:bg-zinc-800 border border-white/10 text-zinc-300 hover:text-white transition"
           >
             Moderate
           </button>
           <button
             onClick={() => applyPreset('top')}
-            className="px-2.5 py-1 text-xs rounded-xl bg-brand-500/20 hover:bg-brand-500/30 border border-brand-500/40 text-brand-300 font-semibold shadow-glow-purple/20 transition flex items-center space-x-1"
+            className="px-2.5 py-1 text-xs rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 font-medium transition"
           >
-            <Sparkles className="w-3 h-3 text-brand-400" />
-            <span>Top Tier</span>
+            Top Tier
           </button>
           <button
             onClick={onReset}
             title="Reset to default"
-            className="p-1.5 rounded-xl bg-ai-850 hover:bg-ai-800 text-slate-400 hover:text-brand-300 border border-ai-700 transition"
+            className="p-1.5 rounded-lg bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-white border border-white/10 transition"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
@@ -121,9 +118,9 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
 
       {/* Basic Academic Parameters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-3.5 rounded-xl bg-ai-950/70 border border-ai-800 hover:border-brand-500/30 transition">
-          <label className="block text-xs font-semibold text-slate-300 mb-2 flex items-center space-x-1.5">
-            <BookOpen className="w-3.5 h-3.5 text-brand-400" />
+        <div className="p-3.5 rounded-xl bg-dark-950/70 border border-white/[0.06] hover:border-white/15 transition">
+          <label className="block text-xs font-semibold text-zinc-300 mb-2 flex items-center space-x-1.5">
+            <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
             <span>Current CGPA (out of 10)</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -134,17 +131,17 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="0.1"
               value={student.cgpa || 7.5}
               onChange={(e) => handleInputChange('cgpa', parseFloat(e.target.value))}
-              className="w-full accent-brand-400 cursor-pointer h-2 bg-ai-800 rounded-lg"
+              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-zinc-800 rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-brand-300 bg-ai-900 px-2.5 py-1 rounded-lg border border-ai-700 min-w-[50px] text-center shadow-sm">
+            <span className="font-mono text-sm font-bold text-white bg-zinc-900 px-2.5 py-0.5 rounded-lg border border-white/10 min-w-[45px] text-center">
               {student.cgpa?.toFixed(1) || '0.0'}
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-ai-950/70 border border-ai-800 hover:border-brand-500/30 transition">
-          <label className="block text-xs font-semibold text-slate-300 mb-2 flex items-center space-x-1.5">
-            <Award className="w-3.5 h-3.5 text-fuchsia-400" />
+        <div className="p-3.5 rounded-xl bg-dark-950/70 border border-white/[0.06] hover:border-white/15 transition">
+          <label className="block text-xs font-semibold text-zinc-300 mb-2 flex items-center space-x-1.5">
+            <Award className="w-3.5 h-3.5 text-zinc-300" />
             <span>Technical Projects Count</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -155,17 +152,17 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="1"
               value={student.projectsCount ?? 2}
               onChange={(e) => handleInputChange('projectsCount', parseInt(e.target.value))}
-              className="w-full accent-fuchsia-400 cursor-pointer h-2 bg-ai-800 rounded-lg"
+              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-zinc-800 rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-fuchsia-300 bg-ai-900 px-2.5 py-1 rounded-lg border border-ai-700 min-w-[40px] text-center shadow-sm">
+            <span className="font-mono text-sm font-bold text-white bg-zinc-900 px-2.5 py-0.5 rounded-lg border border-white/10 min-w-[40px] text-center">
               {student.projectsCount ?? 0}
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-ai-950/70 border border-ai-800 hover:border-brand-500/30 transition">
-          <label className="block text-xs font-semibold text-slate-300 mb-2 flex items-center space-x-1.5">
-            <Briefcase className="w-3.5 h-3.5 text-brand-300" />
+        <div className="p-3.5 rounded-xl bg-dark-950/70 border border-white/[0.06] hover:border-white/15 transition">
+          <label className="block text-xs font-semibold text-zinc-300 mb-2 flex items-center space-x-1.5">
+            <Briefcase className="w-3.5 h-3.5 text-zinc-300" />
             <span>Internships Count</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -176,9 +173,9 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="1"
               value={student.internshipsCount ?? 1}
               onChange={(e) => handleInputChange('internshipsCount', parseInt(e.target.value))}
-              className="w-full accent-brand-300 cursor-pointer h-2 bg-ai-800 rounded-lg"
+              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-zinc-800 rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-brand-300 bg-ai-900 px-2.5 py-1 rounded-lg border border-ai-700 min-w-[40px] text-center shadow-sm">
+            <span className="font-mono text-sm font-bold text-white bg-zinc-900 px-2.5 py-0.5 rounded-lg border border-white/10 min-w-[40px] text-center">
               {student.internshipsCount ?? 0}
             </span>
           </div>
@@ -187,19 +184,19 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
 
       {/* Technical Skill Level Sliders (1 to 5) */}
       <div className="pt-2">
-        <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center space-x-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-brand-400" />
-          <span>Core AI Competency Weights (1 to 5 Scale)</span>
+        <div className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3 flex items-center space-x-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>Core Technical Competencies (1 to 5 Scale)</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
           {CORE_SKILL_CATEGORIES.map((category) => {
             const currentScore = student.skills?.[category.key] || 3.0;
             return (
-              <div key={category.key} className="p-3.5 rounded-xl bg-ai-950/60 border border-ai-800/80 hover:border-brand-500/40 hover:shadow-glow-purple/10 transition">
+              <div key={category.key} className="p-3.5 rounded-xl bg-dark-950/60 border border-white/[0.06] hover:border-white/15 transition">
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="font-medium text-slate-200">{category.label}</span>
-                  <span className="font-mono font-bold text-brand-300 bg-ai-900 px-2 py-0.5 rounded border border-ai-700">
+                  <span className="font-medium text-zinc-300">{category.label}</span>
+                  <span className="font-mono font-bold text-emerald-400 bg-zinc-900/90 px-2 py-0.5 rounded border border-white/10">
                     {currentScore.toFixed(1)} / 5.0
                   </span>
                 </div>
@@ -210,7 +207,7 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
                   step="0.1"
                   value={currentScore}
                   onChange={(e) => handleSkillChange(category.key, e.target.value)}
-                  className="w-full accent-brand-400 cursor-pointer h-1.5 bg-ai-800 rounded-lg"
+                  className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-zinc-800 rounded-lg"
                 />
               </div>
             );
