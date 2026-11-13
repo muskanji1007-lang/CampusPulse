@@ -1,48 +1,190 @@
-# 🎓 CampusPulse – Student Placement & Skill Gap Analytics Dashboard
+<div align="center">
 
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+# 🎓 CampusPulse
+### AI-Inspired Student Placement Readiness & Skill-Gap Analytics Dashboard
+
+[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Recharts](https://img.shields.io/badge/Recharts-2.13-22B5BF?style=for-the-badge)](https://recharts.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Recharts](https://img.shields.io/badge/Recharts-2.15-22B5BF?style=for-the-badge)](https://recharts.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](https://github.com/muskanji1007-lang/CampusPulse/pulls)
 
-> **CampusPulse** is an interactive, industry-oriented placement readiness and skill-gap analytics dashboard for engineering students. It empowers students to evaluate their academic and technical profile, identify skill gaps against real recruitment benchmarks, check tier-wise company eligibility, and generate tailored preparation roadmaps.
+<p align="center">
+  <b>Empowering engineering students to self-audit academic profiles, pinpoint skill deficiencies against industry benchmarks, and estimate placement likelihood with data-driven accuracy.</b>
+</p>
 
----
-
-## 🌟 Key Features
-
-- **📊 Placement Readiness Score (0–100%)**: Dynamic weighted algorithm evaluating Academic Consistency (CGPA), DSA Proficiency, Full-Stack / Core Projects, and Internship experience.
-- **🎯 Company Tier Eligibility Matrix**: Real-time evaluation against standard criteria across **Tier 1 (Product MNCs)**, **Tier 2 (High-Growth Tech Startups)**, and **Tier 3 (Mass Recruiters)**.
-- **🕸️ Skill Gap Radar Visualization**: Interactive radar comparison chart (powered by `Recharts`) contrasting the student's current skill distribution against industry expectations.
-- **🗺️ Actionable Prep Roadmap**: Automated step-by-step guidance pinpointing exact topics to focus on to bridge identified deficiencies.
-- **💾 LocalStorage Session Persistence**: Seamless client-side caching so student assessment history and input data persist across browser refreshes without requiring external servers.
-- **🎨 Premium Dark Navy & Teal UI**: Built with Tailwind CSS following an ergonomic, professional color palette designed for clarity and modern aesthetic appeal.
+[Explore Features](#-core-capabilities) • [System Flow](#-architecture--system-flow) • [Scoring Engine](#-algorithmic-scoring-matrix) • [Company Tiers](#-company-tier-eligibility-benchmarks) • [Quickstart](#-getting-started)
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+</div>
 
-- **Core Framework:** React 18 (Vite SPA)
-- **Styling & Design System:** Tailwind CSS with custom navy (`#0B132B`) and teal (`#00B4D8`) tokens
-- **Data Visualization:** Recharts (Radar, Bar, and Gauge charts)
-- **Iconography:** Lucide React
-- **Analytics Logic:** Pure Client-side Algorithmic Scoring Engine (`src/utils/analyticsEngine.js`)
-- **State & Storage:** React Hooks (`useState`, `useMemo`, `useEffect`) + Browser `localStorage`
+## 📌 Problem Statement
+
+During campus recruitment seasons, thousands of engineering students apply blindly to tech companies without knowing:
+- Whether their current **CGPA & Core CS fundamentals** qualify for shortlisting criteria.
+- Where their **DSA & practical project proficiency** stands relative to industry cutoffs.
+- Exactly **which specific topics** are bottlenecking their placement probability.
+
+**CampusPulse** solves this problem by delivering a **zero-latency, client-side placement diagnostic suite** that calculates an algorithmic **Placement Readiness Index (0–100%)**, visualizes skill gaps using multi-axis radar charts, and generates personalized, actionable preparation roadmaps.
+
+---
+
+## 🏗️ Architecture & System Flow
+
+CampusPulse implements an asynchronous, client-side reactive pipeline that decouples user input evaluation from persistent browser state:
+
+```mermaid
+flowchart TD
+    subgraph UI ["🖥️ Presentation Layer (React + Tailwind CSS)"]
+        Form["Profile & Skill Evaluator (Sliders & Presets)"]
+        Gauge["Circular Readiness Score Card (0–100%)"]
+        Radar["Recharts Skill Gap Radar Analysis"]
+        TierCards["Company Tier Eligibility Matrix"]
+        RoadmapList["Personalized Action Checklist"]
+    end
+
+    subgraph Engine ["⚡ Client-Side Analytics Engine (Pure ES6+ JS)"]
+        Weights["Weighted Multi-Factor Scoring Formula"]
+        GapDiff["Delta Calculation (Student vs Industry Target)"]
+        TierValidation["Rule-Based Criteria Matcher (5 Dimensions)"]
+        ActionGenerator["Dynamic Priority Task Generator"]
+    end
+
+    subgraph Persistence ["💾 Browser Storage"]
+        LocalStorage[("HTML5 LocalStorage<br/>Auto-Sync State")]
+    end
+
+    Form -->|Live State Change| Weights
+    Weights -->|Placement Score %| Gauge
+    Form -->|Skill Ratings| GapDiff
+    GapDiff -->|Radar Dataset| Radar
+    Form -->|Academic & DSA Profile| TierValidation
+    TierValidation -->|Eligibility Match %| TierCards
+    GapDiff -->|Identified Gaps| ActionGenerator
+    ActionGenerator -->|Impact Roadmap| RoadmapList
+
+    Form <-->|Bi-directional Sync| LocalStorage
+```
+
+---
+
+## 📊 Algorithmic Scoring Matrix
+
+The **Placement Readiness Index** calculates a composite score using industry-validated hiring weights:
+
+$$\text{Readiness Index} = \sum (\text{Weight}_i \times \text{Factor}_i)$$
+
+```text
+Factor                     Weight     Contribution Bar                     Focus Area
+────────────────────────────────────────────────────────────────────────────────────────────────────────
+1. DSA & Problem Solving    30%       ████████████░░░░░░░░░░░░░░░░░░░░     Arrays, Trees, DP, Graphs
+2. Academic Consistency     25%       ██████████░░░░░░░░░░░░░░░░░░░░░░     Cumulative College CGPA
+3. Full-Stack / Projects    20%       ████████░░░░░░░░░░░░░░░░░░░░░░░░     Practical Dev & Deployment
+4. Core CS Fundamentals     15%       ██████░░░░░░░░░░░░░░░░░░░░░░░░░░     OS, DBMS, CN, OOPS
+5. Practical Experience     10%       ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░     Internships & HR Soft Skills
+────────────────────────────────────────────────────────────────────────────────────────────────────────
+Total Score                100%       Dynamic Threshold (High >= 85%, Moderate >= 70%, Foundation < 55%)
+```
+
+---
+
+## 🏢 Company Tier Eligibility Benchmarks
+
+CampusPulse categorizes recruiters into three distinct recruitment tiers with strict eligibility parameters:
+
+| Tier Category | Typical Recruiters | Est. CTC (LPA) | Min CGPA | Min DSA Rating | Min Projects | Technical Focus |
+|:---|:---|:---:|:---:|:---:|:---:|:---|
+| **Tier 1: Product Titans** | Google, Amazon, Microsoft, Uber, Atlassian | **18 – 45+** | `8.0` | `4.5 / 5.0` | `3+` | Advanced Trees, Graphs, DP, System Architecture |
+| **Tier 2: Scale-Up Unicorns** | Razorpay, Cred, Zomato, BrowserStack, Postman | **9 – 18** | `7.0` | `3.5 / 5.0` | `2+` | Full-Stack Capabilities, REST APIs, System Design |
+| **Tier 3: Enterprise IT** | TCS Digital/Ninja, Infosys DSE, Wipro, Accenture | **4 – 9** | `6.5` | `2.5 / 5.0` | `1+` | OOPS, Basic Data Structures, Quantitative Aptitude |
+
+---
+
+## ✨ Core Capabilities
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🎯 Circular Placement Readiness Gauge</h3>
+      <p>An animated SVG gauge that recalibrates in real-time as users adjust their academic or skill metrics. Displays granular contribution breakdowns per subject.</p>
+    </td>
+    <td width="50%">
+      <h3>🕸️ Multi-Axis Skill Gap Radar Chart</h3>
+      <p>Built with <code>Recharts</code> to visually compare individual student competencies against standardized industry expectations across 6 dimensions.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🏢 Live Company Tier Matrix</h3>
+      <p>Instant evaluation showing whether the candidate qualifies for direct recruitment drives with color-coded checklists of missing criteria.</p>
+    </td>
+    <td width="50%">
+      <h3>🗺️ Actionable Prep Roadmap</h3>
+      <p>A prioritized, interactive checklist specifying target LeetCode modules and project goals, highlighting the estimated probability impact of each milestone.</p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 🎨 Design System & Palette
+
+CampusPulse avoids generic AI aesthetics in favor of a modern **Dark Navy & Vibrant Teal** palette designed for enterprise SaaS interfaces:
+
+```text
+Primary Background      :  #060B18  (Navy 950 - Deep Space)
+Surface Card Panels     :  #0B132B  (Navy 900 - Subtle Glass Panel)
+Borders & Dividers      :  #1C2541  (Navy 800 - Contrast Border)
+Brand Accent / Glowing  :  #00B4D8  (Teal 500 - Active Focus)
+Secondary Highlights    :  #48CAE4  (Teal 400 - Metric Glow)
+Typography              :  Plus Jakarta Sans (Sans-serif) & JetBrains Mono (Code/Numbers)
+```
+
+---
+
+## 📁 Repository Structure
+
+```text
+CampusPulse/
+├── src/
+│   ├── components/                 # Reusable UI Architecture
+│   │   ├── Navbar.jsx              # Header with logo, verified status & GitHub link
+│   │   ├── Sidebar.jsx             # Category switching & live readiness summary
+│   │   ├── StudentProfileForm.jsx  # Sliders, presets (Entry, Moderate, Top Performer)
+│   │   ├── ReadinessScoreCard.jsx  # SVG circular progress gauge & points breakdown
+│   │   ├── SkillRadarChart.jsx     # Recharts multi-axis radar chart with gap pills
+│   │   ├── CompanyEligibilityTable.jsx # Tier 1/2/3 eligibility breakdown & CTC info
+│   │   └── ActionableRoadmap.jsx   # Priority checklist with placement likelihood impact
+│   │
+│   ├── data/
+│   │   └── companyBenchmarks.js    # Standard recruitment cutoffs & student initial state
+│   │
+│   ├── utils/
+│   │   ├── analyticsEngine.js      # Weighted scoring, tier matching & gap math
+│   │   └── storage.js              # HTML5 LocalStorage persistence handlers
+│   │
+│   ├── App.jsx                     # Master state controller & confetti celebration
+│   ├── index.css                   # Tailwind layers, radial glow, custom scrollbars
+│   └── main.jsx                    # Vite React client entry point
+│
+├── index.html                      # Single Page Application HTML root
+├── tailwind.config.js              # Custom theme tokens & glow shadows
+├── vite.config.js                  # Fast HMR build setup
+├── package.json                    # Project manifest & dependencies
+└── .gitignore                      # Excluded artifacts (node_modules, dist)
+```
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-Make sure you have Node.js (v18 or higher) and npm installed.
+- [Node.js](https://nodejs.org/) (v18.0.0 or higher recommended)
+- `npm` (bundled with Node.js)
 
-```bash
-node -v
-npm -v
-```
-
-### Installation
+### Installation & Run
 
 1. **Clone the repository:**
    ```bash
@@ -55,44 +197,27 @@ npm -v
    npm install
    ```
 
-3. **Start the local development server:**
+3. **Start local development server:**
    ```bash
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`.
+4. Open your browser at **`http://localhost:5173`** to test the live application!
 
----
-
-## 📂 Project Structure
-
-```text
-CampusPulse/
-├── src/
-│   ├── components/         # Modular UI Components
-│   │   ├── Navbar.jsx              # Header with logo & status indicator
-│   │   ├── Sidebar.jsx             # Category and page navigation
-│   │   ├── StudentProfileForm.jsx  # Input form for CGPA, DSA, & Skills
-│   │   ├── ReadinessScoreCard.jsx  # Animated radial gauge & tier badge
-│   │   ├── SkillRadarChart.jsx     # Recharts multi-axis skill comparison
-│   │   ├── CompanyEligibility.jsx  # Tier 1, 2, 3 eligibility breakdown
-│   │   └── ActionableRoadmap.jsx   # Dynamic weekly prep recommendations
-│   ├── data/
-│   │   └── companyBenchmarks.js    # Industry hiring benchmarks & cutoffs
-│   ├── utils/
-│   │   ├── analyticsEngine.js      # Weighted scoring & gap detection logic
-│   │   └── storage.js              # LocalStorage sync helpers
-│   ├── App.jsx                     # Root application container & state
-│   ├── index.css                   # Global styles & Tailwind directives
-│   └── main.jsx                    # Vite React entry point
-├── index.html                      # HTML template
-├── tailwind.config.js              # Theme customization
-├── vite.config.js                  # Vite configuration
-└── package.json                    # Project metadata & scripts
-```
+5. **Build for Production:**
+   ```bash
+   npm run build
+   ```
 
 ---
 
 ## 👩‍💻 Author
 
-Developed with ❤️ by **[Muskan Gupta](https://github.com/muskanji1007-lang)**.
+Crafted with dedication by **[Muskan Gupta](https://github.com/muskanji1007-lang)**  
+*Aspiring Frontend Software Engineer & React Enthusiast*
+
+---
+
+<div align="center">
+  <sub>⭐ If you find CampusPulse insightful, please consider starring this repository!</sub>
+</div>
