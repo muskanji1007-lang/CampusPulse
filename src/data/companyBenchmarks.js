@@ -71,19 +71,19 @@ export const CORE_SKILL_CATEGORIES = [
 
 export const INITIAL_STUDENT_STATE = {
   fullName: 'Muskan Gupta',
-  branch: 'Computer Science & Engineering',
+  branch: 'CSE - Artificial Intelligence & Machine Learning (CSE-AIML)',
   targetRole: 'Frontend / Full-Stack Engineer',
-  cgpa: 8.2,
-  tenthPercentage: 88,
-  twelfthPercentage: 86,
-  projectsCount: 2,
+  cgpa: 8.5,
+  tenthPercentage: 90,
+  twelfthPercentage: 88,
+  projectsCount: 3,
   internshipsCount: 1,
   skills: {
-    dsa: 3.5,
-    webDev: 4.5,
-    coreCs: 3.5,
-    problemSolving: 3.8,
-    systemDesign: 2.5,
-    softSkills: 4.0
+    dsa: 4.2,
+    webDev: 4.6,
+    coreCs: 4.0,
+    problemSolving: 4.2,
+    systemDesign: 3.5,
+    softSkills: 4.2
   }
 };

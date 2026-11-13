@@ -6,10 +6,8 @@ import {
   Lock, 
   ArrowRight, 
   Sparkles, 
-  ShieldCheck, 
   Eye, 
   EyeOff,
-  BookOpen,
   Briefcase
 } from 'lucide-react';
 import { DEMO_PROFILES, registerUser, authenticateUser } from '../utils/auth';
@@ -22,9 +20,9 @@ export default function AuthModal({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-  const [branch, setBranch] = useState('Computer Science & Engineering');
+  const [branch, setBranch] = useState('CSE - Artificial Intelligence & Machine Learning (CSE-AIML)');
   const [targetRole, setTargetRole] = useState('Frontend / Full-Stack Engineer');
-  const [cgpa, setCgpa] = useState(8.2);
+  const [cgpa, setCgpa] = useState(8.5);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -77,14 +75,14 @@ export default function AuthModal({ onLoginSuccess }) {
           </p>
         </div>
 
-        {/* Quick Reviewer 1-Click Access Box */}
+        {/* Quick Reviewer 1-Click Access Box (Tailored for Muskan) */}
         <div className="mb-6 p-3.5 rounded-2xl bg-dark-950/80 border border-white/[0.08] space-y-2.5">
           <div className="flex items-center justify-between text-[11px]">
             <span className="font-semibold text-zinc-300 flex items-center space-x-1.5">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
               <span>1-Click Reviewer Access</span>
             </span>
-            <span className="text-emerald-400 text-[10px] font-medium">Instant Login</span>
+            <span className="text-emerald-400 text-[10px] font-medium">Instant Access</span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             {DEMO_PROFILES.map((profile, i) => (
@@ -92,12 +90,14 @@ export default function AuthModal({ onLoginSuccess }) {
                 key={i}
                 type="button"
                 onClick={() => handleDemoSelect(profile)}
-                className="p-2 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-white/[0.07] hover:border-emerald-500/40 text-left transition text-xs group"
+                className="p-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-white/[0.07] hover:border-emerald-500/40 text-left transition text-xs group"
               >
                 <div className="font-semibold text-white group-hover:text-emerald-300 transition text-[11px] truncate">
                   {profile.fullName}
                 </div>
-                <div className="text-[10px] text-zinc-400 truncate">{profile.branch.split(' ')[0]} • CGPA {profile.cgpa}</div>
+                <div className="text-[10px] text-zinc-400 truncate">
+                  {profile.branch.includes('AIML') ? 'CSE (AI/ML)' : 'CSE (Data Science)'} • CGPA {profile.cgpa}
+                </div>
               </button>
             ))}
           </div>
@@ -141,7 +141,7 @@ export default function AuthModal({ onLoginSuccess }) {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="student@college.edu"
+                  placeholder="muskan.gupta@college.edu"
                   className="w-full pl-9 pr-3 py-2 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
                 />
               </div>
@@ -178,7 +178,7 @@ export default function AuthModal({ onLoginSuccess }) {
             </button>
           </form>
         ) : (
-          /* Form: Register Profile */
+          /* Form: Register Profile with Modern CS Branches */
           <form onSubmit={handleRegister} className="space-y-3">
             <div>
               <label className="block text-[11px] font-medium text-zinc-300 mb-1">Full Name</label>
@@ -204,30 +204,30 @@ export default function AuthModal({ onLoginSuccess }) {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@college.edu"
+                  placeholder="muskan@college.edu"
                   className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
                 <label className="block text-[11px] font-medium text-zinc-300 mb-1">Engineering Branch</label>
                 <select
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-[11px] text-zinc-300 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full px-2 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-[11px] text-zinc-200 focus:outline-none focus:border-emerald-500/60 transition"
                 >
-                  <option value="Computer Science & Engineering">CSE</option>
-                  <option value="Information Technology">IT</option>
-                  <option value="Electronics & Communication">ECE</option>
-                  <option value="Electrical Engineering">EE</option>
-                  <option value="Mechanical Engineering">ME</option>
+                  <option value="CSE - Artificial Intelligence & Machine Learning (CSE-AIML)">CSE (AI & ML)</option>
+                  <option value="CSE - Data Science (CSE-DS)">CSE (Data Science)</option>
+                  <option value="Computer Science & Engineering (Core CSE)">Core CSE</option>
+                  <option value="CSE - Cyber Security (CSE-CS)">CSE (Cyber Security)</option>
+                  <option value="Information Technology (IT)">Information Technology (IT)</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-zinc-300 mb-1">Starting CGPA</label>
+                <label className="block text-[11px] font-medium text-zinc-300 mb-1">Current CGPA</label>
                 <input
                   type="number"
                   step="0.1"
@@ -248,7 +248,7 @@ export default function AuthModal({ onLoginSuccess }) {
                   type="text"
                   value={targetRole}
                   onChange={(e) => setTargetRole(e.target.value)}
-                  placeholder="e.g. SDE-1 / Frontend Engineer"
+                  placeholder="e.g. Frontend Engineer / SDE-1"
                   className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
                 />
               </div>
@@ -258,7 +258,7 @@ export default function AuthModal({ onLoginSuccess }) {
               type="submit"
               className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition flex items-center justify-center space-x-2 mt-4 shadow-sm"
             >
-              <span>Register & Launch Audit</span>
+              <span>Register Profile & Launch Audit</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </form>

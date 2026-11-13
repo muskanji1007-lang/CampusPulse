@@ -8,40 +8,40 @@ import { INITIAL_STUDENT_STATE } from '../data/companyBenchmarks';
 const AUTH_USER_KEY = 'campuspulse_active_user';
 const USERS_REGISTRY_KEY = 'campuspulse_registered_users';
 
-// Demo Presets for 1-Click Access
+// Real Demo Profiles tailored for Muskan
 export const DEMO_PROFILES = [
   {
     fullName: 'Muskan Gupta',
     email: 'muskan.gupta@college.edu',
-    branch: 'Computer Science & Engineering',
+    branch: 'CSE - Artificial Intelligence & Machine Learning (CSE-AIML)',
     targetRole: 'Frontend / Full-Stack Engineer',
     cgpa: 8.5,
     projectsCount: 3,
     internshipsCount: 1,
     skills: {
       dsa: 4.2,
-      webDev: 4.5,
-      coreCs: 3.8,
-      problemSolving: 4.0,
-      systemDesign: 3.2,
+      webDev: 4.6,
+      coreCs: 4.0,
+      problemSolving: 4.2,
+      systemDesign: 3.5,
       softSkills: 4.2
     }
   },
   {
-    fullName: 'Aarav Sharma',
-    email: 'aarav.sharma@college.edu',
-    branch: 'Information Technology',
+    fullName: 'Muskan Gupta',
+    email: 'muskan.ds@college.edu',
+    branch: 'CSE - Data Science (CSE-DS)',
     targetRole: 'Software Development Engineer (SDE-1)',
-    cgpa: 7.2,
+    cgpa: 8.2,
     projectsCount: 2,
-    internshipsCount: 0,
+    internshipsCount: 1,
     skills: {
-      dsa: 3.0,
-      webDev: 3.2,
-      coreCs: 3.0,
-      problemSolving: 2.8,
-      systemDesign: 2.0,
-      softSkills: 3.5
+      dsa: 3.8,
+      webDev: 4.0,
+      coreCs: 3.6,
+      problemSolving: 3.8,
+      systemDesign: 3.0,
+      softSkills: 4.0
     }
   }
 ];
@@ -102,14 +102,12 @@ export function registerUser(newUserData) {
 }
 
 export function authenticateUser(email, password) {
-  // Client-side authentication logic against registry
   const users = getRegisteredUsers();
   const matched = users.find(u => u.email?.toLowerCase() === email?.toLowerCase());
   if (matched) {
     setActiveUser(matched);
     return { success: true, user: matched };
   }
-  // If not found in registry, create dynamic session for testing
   const fallbackUser = {
     ...INITIAL_STUDENT_STATE,
     fullName: email.split('@')[0].replace('.', ' '),
