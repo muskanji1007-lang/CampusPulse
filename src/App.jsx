@@ -15,11 +15,12 @@ import {
 } from './utils/analyticsEngine';
 import { loadStoredStudent, saveStoredStudent } from './utils/storage';
 import { INITIAL_STUDENT_STATE } from './data/companyBenchmarks';
-import { Sparkles, BarChart3, CheckCircle, Flame } from 'lucide-react';
+import { Sparkles, Bot, Share2, Check, Download, Zap } from 'lucide-react';
 
 export default function App() {
   const [student, setStudent] = useState(() => loadStoredStudent());
   const [activeTab, setActiveTab] = useState('overview');
+  const [copied, setCopied] = useState(false);
 
   // Sync to LocalStorage on update
   useEffect(() => {
@@ -37,12 +38,13 @@ export default function App() {
     if (assessment.score >= 85) {
       try {
         confetti({
-          particleCount: 50,
-          spread: 60,
-          origin: { y: 0.85 }
+          particleCount: 65,
+          spread: 75,
+          origin: { y: 0.8 },
+          colors: ['#A855F7', '#C084FC', '#E879F9', '#38BDF8']
         });
       } catch (e) {
-        // graceful fallback if canvas-confetti is not loaded
+        // graceful fallback if canvas-confetti fails
       }
     }
   }, [assessment.score]);
@@ -51,8 +53,21 @@ export default function App() {
     setStudent(INITIAL_STUDENT_STATE);
   };
 
+  const handleCopySummary = () => {
+    const summaryText = `🎓 CampusPulse Placement Audit for ${student.fullName}:
+- Placement Readiness Score: ${assessment.score}% (${assessment.label})
+- Tier Status: ${assessment.tierRank}
+- CGPA: ${student.cgpa} | Projects: ${student.projectsCount} | Internships: ${student.internshipsCount}
+- DSA Rating: ${student.skills?.dsa}/5.0 | WebDev: ${student.skills?.webDev}/5.0
+Generated via CampusPulse AI Engine 🚀`;
+
+    navigator.clipboard.writeText(summaryText);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
   return (
-    <div className="min-h-screen bg-navy-950 text-slate-100 flex flex-col font-sans selection:bg-teal-500 selection:text-navy-950">
+    <div className="min-h-screen bg-ai-950 text-slate-100 flex flex-col font-sans selection:bg-brand-500 selection:text-white">
       {/* Top Navigation */}
       <Navbar candidateName={student.fullName} />
 
@@ -68,30 +83,40 @@ export default function App() {
         {/* Dynamic Main Content Pane */}
         <main className="flex-1 space-y-6">
           
-          {/* Top Banner Alert / Overview Header */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-navy-900 via-navy-850 to-navy-900 border border-teal-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-glow-subtle">
-            <div>
+          {/* Top Banner Alert / Overview Header with AI Violet Glow */}
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-ai-900 via-ai-850 to-ai-900 border border-brand-500/25 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-glow-purple/10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="relative z-10">
               <div className="flex items-center space-x-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-teal-400">Student Placement Audit</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                <span className="text-xs font-bold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-fuchsia-400 flex items-center space-x-1">
+                  <Bot className="w-3.5 h-3.5 text-brand-400 inline" />
+                  <span>AI Placement Diagnostic</span>
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
                 <span className="text-xs text-slate-400">{student.branch}</span>
               </div>
               <h1 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
                 Welcome back, {student.fullName.split(' ')[0]} 👋
               </h1>
-              <p className="text-xs text-slate-300 mt-1 max-w-xl">
-                Your profile is currently evaluated for <span className="font-semibold text-teal-300">{assessment.tierRank}</span>. Review skill gaps and recommendations below.
+              <p className="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
+                Your profile is synthesized for <span className="font-semibold text-brand-300">{assessment.tierRank}</span>. Real-time skill gaps and recommendations are analyzed below.
               </p>
             </div>
 
-            <div className="flex items-center space-x-3 shrink-0">
-              <div className="px-4 py-2 rounded-xl bg-navy-950/80 border border-navy-800 text-center">
-                <div className="text-[10px] uppercase font-bold text-slate-400">Target Role</div>
-                <div className="text-xs font-bold text-teal-300">{student.targetRole}</div>
-              </div>
-              <div className="px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/30 text-center">
-                <div className="text-[10px] uppercase font-bold text-teal-400">Readiness</div>
-                <div className="text-xs font-mono font-bold text-teal-300">{assessment.score}%</div>
+            <div className="flex items-center space-x-3 shrink-0 relative z-10">
+              <button
+                onClick={handleCopySummary}
+                className="px-3.5 py-2 rounded-xl bg-ai-950/80 hover:bg-ai-850 border border-brand-500/30 text-xs font-semibold text-brand-300 hover:text-white transition flex items-center space-x-2 shadow-sm"
+                title="Copy text summary to clipboard"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Summary Copied!' : 'Share Audit'}</span>
+              </button>
+
+              <div className="px-4 py-2 rounded-xl bg-brand-500/15 border border-brand-500/35 text-center shadow-glow-purple/20">
+                <div className="text-[10px] uppercase font-bold text-brand-400">Readiness</div>
+                <div className="text-sm font-mono font-extrabold text-brand-200">{assessment.score}%</div>
               </div>
             </div>
           </div>
@@ -155,16 +180,16 @@ export default function App() {
       </div>
 
       {/* Minimalist Professional Footer */}
-      <footer className="border-t border-navy-800/60 bg-navy-950/80 mt-12 py-6 text-center text-xs text-slate-400">
+      <footer className="border-t border-ai-800/60 bg-ai-950/80 mt-12 py-6 text-center text-xs text-slate-400">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
-            CampusPulse © 2026. Built with React & Tailwind CSS by{' '}
-            <span className="font-semibold text-teal-400">Muskan Gupta</span>.
+            CampusPulse © 2026. Built with React & AI Purple Theme by{' '}
+            <span className="font-semibold text-brand-400">Muskan Gupta</span>.
           </p>
           <div className="flex items-center space-x-4 text-xs">
-            <span className="text-slate-400">Client-Side Analytics Engine</span>
+            <span className="text-slate-400">Algorithmic Placement Engine</span>
             <span>•</span>
-            <span className="text-teal-400">Open-Source Ready</span>
+            <span className="text-brand-400">Open-Source Ready</span>
           </div>
         </div>
       </footer>
