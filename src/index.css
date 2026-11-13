@@ -4,41 +4,58 @@
 
 @layer base {
   body {
-    @apply bg-navy-950 text-slate-100 font-sans min-h-screen antialiased;
+    @apply bg-ai-950 text-slate-100 font-sans min-h-screen antialiased;
+    background-color: #07040F;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(0, 180, 216, 0.08) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(114, 239, 221, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(168, 85, 247, 0.16) 0px, transparent 45%),
+      radial-gradient(at 100% 0%, rgba(217, 70, 239, 0.12) 0px, transparent 40%),
+      radial-gradient(at 50% 50%, rgba(126, 34, 206, 0.06) 0px, transparent 60%),
+      radial-gradient(at 100% 100%, rgba(147, 51, 234, 0.14) 0px, transparent 45%);
     background-attachment: fixed;
   }
 }
 
-/* Custom modern scrollbar */
+/* Custom modern AI purple scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #060B18;
+  background: #07040F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1C2541;
+  background: #221648;
   border-radius: 4px;
+  border: 1px solid rgba(168, 85, 247, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00B4D8;
+  background: #A855F7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
-/* Glassmorphism utility card */
+/* Glassmorphism AI Card Utility */
 .glass-panel {
-  background: rgba(11, 19, 43, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(58, 80, 107, 0.35);
+  background: rgba(14, 9, 31, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 39, 115, 0.45);
+  transition: all 0.25s ease-in-out;
 }
 
 .glass-panel:hover {
-  border-color: rgba(0, 180, 216, 0.4);
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 8px 30px -4px rgba(168, 85, 247, 0.12);
+}
+
+/* Subtle glowing pulse */
+@keyframes ambientGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.animate-ambient {
+  animation: ambientGlow 6s infinite ease-in-out;
 }

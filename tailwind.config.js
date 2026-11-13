@@ -7,19 +7,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: '#060B18', // Deep background
-          900: '#0B132B', // Surface / Card Background
-          850: '#101B3B', // Border / Hover
-          800: '#1C2541', // Muted Secondary
-          700: '#3A506B', // Soft text / Subdued lines
+        ai: {
+          950: '#07040F', // Ultra deep obsidian void
+          900: '#0E091F', // Card surface background
+          850: '#160E30', // Elevated panel surface
+          800: '#221648', // Component border / Divider
+          700: '#3B2773', // Subdued border
+          600: '#6344B5', // Mid tone
         },
-        teal: {
-          300: '#72EFDD',
-          400: '#48CAE4', // Bright Accent
-          500: '#00B4D8', // Primary Brand Color
-          600: '#0096C7', // Deep Teal
-          700: '#0077B6', // Dark Accent
+        brand: {
+          300: '#D8B4FE', // Light lavender
+          400: '#C084FC', // Bright violet accent
+          500: '#A855F7', // Core AI Purple
+          600: '#9333EA', // Deep Neon Violet
+          700: '#7E22CE', // Dark Purple
+        },
+        fuchsia: {
+          400: '#E879F9',
+          500: '#D946EF',
         }
       },
       fontFamily: {
@@ -27,8 +32,9 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        'glow-teal': '0 0 25px -5px rgba(0, 180, 216, 0.25)',
-        'glow-subtle': '0 4px 20px -2px rgba(11, 19, 43, 0.7)',
+        'glow-purple': '0 0 30px -5px rgba(168, 85, 247, 0.35)',
+        'glow-violet': '0 0 25px -4px rgba(147, 51, 234, 0.4)',
+        'glow-subtle': '0 8px 30px -4px rgba(14, 9, 31, 0.8)',
       }
     },
   },
