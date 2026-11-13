@@ -129,16 +129,16 @@ CampusPulse categorizes recruiters into three distinct recruitment tiers with st
 
 ---
 
-## 🎨 Design System & Palette
+## 🎨 Design System & AI Purple Palette
 
-CampusPulse avoids generic AI aesthetics in favor of a modern **Dark Navy & Vibrant Teal** palette designed for enterprise SaaS interfaces:
+CampusPulse features a signature **Deep AI Obsidian & Radiant Neon Purple** palette inspired by next-generation developer and AI tools (such as Claude, Gemini, and Cursor):
 
 ```text
-Primary Background      :  #060B18  (Navy 950 - Deep Space)
-Surface Card Panels     :  #0B132B  (Navy 900 - Subtle Glass Panel)
-Borders & Dividers      :  #1C2541  (Navy 800 - Contrast Border)
-Brand Accent / Glowing  :  #00B4D8  (Teal 500 - Active Focus)
-Secondary Highlights    :  #48CAE4  (Teal 400 - Metric Glow)
+Primary Background      :  #07040F  (Obsidian Void - Deep Contrast)
+Surface Card Panels     :  #0E091F  (AI Panel Surface with Blur Glassmorphism)
+Component Borders       :  #221648  (Violet Ambient Border)
+Brand Neon Purple       :  #A855F7  (Core AI Purple - Interactive Focus)
+Gradients & Accents     :  #C084FC & #E879F9 (Radiant Violet & Electric Fuchsia)
 Typography              :  Plus Jakarta Sans (Sans-serif) & JetBrains Mono (Code/Numbers)
 ```
 
