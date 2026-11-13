@@ -129,16 +129,16 @@ CampusPulse categorizes recruiters into three distinct recruitment tiers with st
 
 ---
 
-## 🎨 Design System & AI Purple Palette
+## 🎨 Design System & Magic UI Pro Bento Palette
 
-CampusPulse features a signature **Deep AI Obsidian & Radiant Neon Purple** palette inspired by next-generation developer and AI tools (such as Claude, Gemini, and Cursor):
+CampusPulse adopts a high-end **Bento-Grid Dark Aesthetic** inspired by modern design engineering platforms (such as **Magic UI Pro**, Linear, and Vercel). It avoids generic oversaturated AI purple themes in favor of an ergonomic, monochrome canvas with surgical accent highlights:
 
 ```text
-Primary Background      :  #07040F  (Obsidian Void - Deep Contrast)
-Surface Card Panels     :  #0E091F  (AI Panel Surface with Blur Glassmorphism)
-Component Borders       :  #221648  (Violet Ambient Border)
-Brand Neon Purple       :  #A855F7  (Core AI Purple - Interactive Focus)
-Gradients & Accents     :  #C084FC & #E879F9 (Radiant Violet & Electric Fuchsia)
+Canvas Background       :  #050507  (Pitch Black with Subtle 24px Dot Matrix Grid)
+Bento Card Surface      :  #111116  (Translucent Glass Panel with 20px Backdrop Blur)
+Card Borders & Dividers :  rgba(255, 255, 255, 0.08) (Subtle 1px Precision Border)
+Primary Brand Accent    :  #10B981 & #34D399 (Clean Mint / Emerald - Tier Qualification)
+Secondary Benchmark    :  #F59E0B  (Refined Amber - Industry Cutoff Benchmark)
 Typography              :  Plus Jakarta Sans (Sans-serif) & JetBrains Mono (Code/Numbers)
 ```
 
