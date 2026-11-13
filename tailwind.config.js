@@ -7,24 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        ai: {
-          950: '#07040F', // Ultra deep obsidian void
-          900: '#0E091F', // Card surface background
-          850: '#160E30', // Elevated panel surface
-          800: '#221648', // Component border / Divider
-          700: '#3B2773', // Subdued border
-          600: '#6344B5', // Mid tone
+        dark: {
+          950: '#050507', // Deep pitch black canvas
+          900: '#0B0B0E', // Surface background
+          850: '#111116', // Bento card background
+          800: '#1A1A22', // Subtle borders
+          700: '#2A2A36', // Hover border
+          600: '#3E3E4E',
         },
-        brand: {
-          300: '#D8B4FE', // Light lavender
-          400: '#C084FC', // Bright violet accent
-          500: '#A855F7', // Core AI Purple
-          600: '#9333EA', // Deep Neon Violet
-          700: '#7E22CE', // Dark Purple
+        emerald: {
+          400: '#34D399', // Mint highlight
+          500: '#10B981', // Core brand accent
+          600: '#059669', // Deep emerald
         },
-        fuchsia: {
-          400: '#E879F9',
-          500: '#D946EF',
+        amber: {
+          400: '#FBBF24',
+          500: '#F59E0B',
         }
       },
       fontFamily: {
@@ -32,9 +30,9 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       boxShadow: {
-        'glow-purple': '0 0 30px -5px rgba(168, 85, 247, 0.35)',
-        'glow-violet': '0 0 25px -4px rgba(147, 51, 234, 0.4)',
-        'glow-subtle': '0 8px 30px -4px rgba(14, 9, 31, 0.8)',
+        'bento': '0 0 0 1px rgba(255, 255, 255, 0.07), 0 10px 30px -10px rgba(0, 0, 0, 0.8)',
+        'bento-hover': '0 0 0 1px rgba(255, 255, 255, 0.16), 0 20px 40px -15px rgba(0, 0, 0, 0.9)',
+        'glow-emerald': '0 0 25px -4px rgba(16, 185, 129, 0.25)',
       }
     },
   },
