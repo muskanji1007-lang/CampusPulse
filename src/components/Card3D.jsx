@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 
 /**
- * Card3D - Subtle Interactive Tilt Component
- * Provides restrained perspective depth with an oceanic ambient specular sheen.
+ * Card3D - Subtle Interactive Tilt Component (Light Theme)
+ * Provides restrained perspective depth with an elegant clean sheen.
  */
 export default function Card3D({ children, className = '', depth = 6 }) {
   const cardRef = useRef(null);
@@ -27,7 +27,7 @@ export default function Card3D({ children, className = '', depth = 6 }) {
 
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
-    setGlarePos({ x: glareX, y: glareY, opacity: 0.06 });
+    setGlarePos({ x: glareX, y: glareY, opacity: 0.08 });
   };
 
   const handleMouseLeave = () => {
@@ -52,11 +52,11 @@ export default function Card3D({ children, className = '', depth = 6 }) {
         }}
         className={`relative ${className}`}
       >
-        {/* Subtle Cyan-tinted specular sheen */}
+        {/* Specular sheen on light card */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300 z-30"
           style={{
-            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(56, 189, 248, ${glarePos.opacity}), transparent 80%)`,
+            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(2, 132, 199, ${glarePos.opacity}), transparent 80%)`,
           }}
         />
         

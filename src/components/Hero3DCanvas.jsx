@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 
 /**
- * Hero3DCanvas - Midnight Oceanic Placement Constellation Visualization
- * Mathematically projects 3D recruitment nodes (Companies, Skills, Student Criteria)
- * with vibrant cyan accents and oceanic navy atmosphere.
+ * Hero3DCanvas - Light Enterprise Placement Constellation Visualization
+ * Projects 3D recruitment nodes with crisp blue lines and high-contrast dark text
+ * designed specifically for clean light dashboards.
  */
 export default function Hero3DCanvas({ className = '' }) {
   const canvasRef = useRef(null);
@@ -91,7 +91,7 @@ export default function Hero3DCanvas({ className = '' }) {
         const scale = focalLength / (focalLength + z2 + radius);
         const projX = x1 * scale + centerX;
         const projY = y1 * scale + centerY;
-        const alpha = Math.max(0.12, Math.min(1, (z2 + radius) / (2 * radius)));
+        const alpha = Math.max(0.15, Math.min(1, (z2 + radius) / (2 * radius)));
 
         projected.push({
           x: projX,
@@ -106,7 +106,7 @@ export default function Hero3DCanvas({ className = '' }) {
 
       projected.sort((a, b) => a.z - b.z);
 
-      // Clean, subtle connecting lines in Cyan
+      // Connecting lines in Crisp Royal/Sky Blue
       for (let i = 0; i < projected.length; i++) {
         for (let j = i + 1; j < projected.length; j++) {
           const dx = projected[i].x - projected[j].x;
@@ -114,10 +114,10 @@ export default function Hero3DCanvas({ className = '' }) {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 60) {
-            const lineAlpha = (1 - dist / 60) * Math.min(projected[i].alpha, projected[j].alpha) * 0.35;
+            const lineAlpha = (1 - dist / 60) * Math.min(projected[i].alpha, projected[j].alpha) * 0.4;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(6, 182, 212, ${lineAlpha})`;
-            ctx.lineWidth = 0.75;
+            ctx.strokeStyle = `rgba(2, 132, 199, ${lineAlpha})`;
+            ctx.lineWidth = 0.8;
             ctx.moveTo(projected[i].x, projected[i].y);
             ctx.lineTo(projected[j].x, projected[j].y);
             ctx.stroke();
@@ -125,28 +125,28 @@ export default function Hero3DCanvas({ className = '' }) {
         }
       }
 
-      // Render nodes with Electric Cyan highlights
+      // Render nodes with Blue highlights
       for (let i = 0; i < projected.length; i++) {
         const p = projected[i];
 
         ctx.beginPath();
         if (p.isHighlight) {
           ctx.arc(p.x, p.y, 3.2 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(6, 182, 212, ${p.alpha * 0.95})`;
-          ctx.shadowColor = '#06B6D4';
+          ctx.fillStyle = `rgba(2, 132, 199, ${p.alpha * 0.95})`;
+          ctx.shadowColor = 'rgba(2, 132, 199, 0.3)';
           ctx.shadowBlur = 4;
         } else {
           ctx.arc(p.x, p.y, 1.8 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(148, 163, 184, ${p.alpha * 0.5})`;
+          ctx.fillStyle = `rgba(148, 163, 184, ${p.alpha * 0.6})`;
           ctx.shadowBlur = 0;
         }
         ctx.fill();
 
-        // Node labels
+        // Node labels in dark slate for crystal-clear readability
         if (p.label && p.z > -15) {
           ctx.shadowBlur = 0;
-          ctx.font = `${Math.max(9, Math.round(9.5 * p.scale))}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillStyle = `rgba(241, 245, 249, ${p.alpha * 0.9})`;
+          ctx.font = `600 ${Math.max(9, Math.round(9.5 * p.scale))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillStyle = `rgba(15, 23, 42, ${p.alpha * 0.9})`;
           ctx.fillText(p.label, p.x + 5, p.y + 3);
         }
       }
