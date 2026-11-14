@@ -2,8 +2,7 @@ import React, { useState, useRef } from 'react';
 
 /**
  * Card3D - Subtle Interactive Tilt Component
- * Provides restrained, professional perspective elevation inspired by Linear
- * without excessive tilt or harsh neon reflections.
+ * Provides restrained perspective depth with an oceanic ambient specular sheen.
  */
 export default function Card3D({ children, className = '', depth = 6 }) {
   const cardRef = useRef(null);
@@ -20,17 +19,15 @@ export default function Card3D({ children, className = '', depth = 6 }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Subtle 3D angle calculation
     const rotX = ((y - centerY) / centerY) * -depth;
     const rotY = ((x - centerX) / centerX) * depth;
 
     setRotateX(rotX);
     setRotateY(rotY);
 
-    // Subtle specular sheen
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
-    setGlarePos({ x: glareX, y: glareY, opacity: 0.04 });
+    setGlarePos({ x: glareX, y: glareY, opacity: 0.06 });
   };
 
   const handleMouseLeave = () => {
@@ -55,15 +52,15 @@ export default function Card3D({ children, className = '', depth = 6 }) {
         }}
         className={`relative ${className}`}
       >
-        {/* Subtle, restrained sheen */}
+        {/* Subtle Cyan-tinted specular sheen */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300 z-30"
           style={{
-            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, ${glarePos.opacity}), transparent 80%)`,
+            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(56, 189, 248, ${glarePos.opacity}), transparent 80%)`,
           }}
         />
         
-        {/* Card Content with subtle depth */}
+        {/* Card Content with subtle elevation */}
         <div style={{ transform: 'translateZ(6px)', transformStyle: 'preserve-3d' }}>
           {children}
         </div>

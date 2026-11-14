@@ -72,40 +72,40 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
   return (
     <div className="glass-panel p-6 rounded-2xl space-y-6 relative overflow-hidden">
       {/* Form Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/[0.08] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#38BDF8]/15 pb-4">
         <div>
-          <h2 className="text-base font-bold font-heading text-[#E8EDE9] flex items-center space-x-2.5">
-            <div className="p-1.5 rounded-lg bg-[#1D3028] border border-white/[0.08] text-[#10B981]">
+          <h2 className="text-base font-bold font-heading text-[#F1F5F9] flex items-center space-x-2.5">
+            <div className="p-1.5 rounded-lg bg-[#1B2A4A] border border-[#38BDF8]/25 text-[#06B6D4]">
               <SlidersHorizontal className="w-4 h-4" />
             </div>
             <span>Profile & Skill Diagnostics</span>
           </h2>
-          <p className="text-xs text-[#9CA9A1] mt-0.5">
+          <p className="text-xs text-[#94A3B8] mt-0.5">
             Adjust academic parameters and technical skill levels to trigger real-time recalculations.
           </p>
         </div>
 
         {/* Preset Buttons */}
         <div className="flex items-center space-x-2">
-          <span className="text-[11px] text-[#9CA9A1] hidden md:inline">Presets:</span>
+          <span className="text-[11px] text-[#94A3B8] hidden md:inline">Presets:</span>
           <button
             type="button"
             onClick={() => applyPreset('fresher')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-[#101613] hover:bg-[#1D3028] border border-white/[0.08] text-[#9CA9A1] hover:text-[#E8EDE9] transition"
+            className="px-2.5 py-1 text-xs rounded-lg bg-[#0D1527] hover:bg-[#1B2A4A] border border-[#38BDF8]/15 text-[#94A3B8] hover:text-[#F1F5F9] transition"
           >
             Entry
           </button>
           <button
             type="button"
             onClick={() => applyPreset('average')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-[#101613] hover:bg-[#1D3028] border border-white/[0.08] text-[#9CA9A1] hover:text-[#E8EDE9] transition"
+            className="px-2.5 py-1 text-xs rounded-lg bg-[#0D1527] hover:bg-[#1B2A4A] border border-[#38BDF8]/15 text-[#94A3B8] hover:text-[#F1F5F9] transition"
           >
             Moderate
           </button>
           <button
             type="button"
             onClick={() => applyPreset('top')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-[#1D3028] hover:bg-[#263B32] border border-[#10B981]/30 text-[#6EE7B7] font-medium transition"
+            className="px-2.5 py-1 text-xs rounded-lg bg-[#1B2A4A] hover:bg-[#23385D] border border-[#06B6D4]/40 text-[#38BDF8] font-medium transition shadow-sm"
           >
             Top Tier
           </button>
@@ -113,7 +113,7 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
             type="button"
             onClick={onReset}
             title="Reset to default"
-            className="p-1.5 rounded-lg bg-[#101613] hover:bg-[#1D3028] text-[#9CA9A1] hover:text-[#E8EDE9] border border-white/[0.08] transition"
+            className="p-1.5 rounded-lg bg-[#0D1527] hover:bg-[#1B2A4A] text-[#94A3B8] hover:text-[#F1F5F9] border border-[#38BDF8]/15 transition"
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
@@ -122,9 +122,9 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
 
       {/* Basic Academic Parameters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-3.5 rounded-xl bg-[#101613] border border-white/[0.08] hover:border-white/[0.14] transition">
-          <label className="block text-xs font-semibold text-[#E8EDE9] mb-2 flex items-center space-x-1.5">
-            <BookOpen className="w-3.5 h-3.5 text-[#10B981]" />
+        <div className="p-3.5 rounded-xl bg-[#0D1527] border border-[#38BDF8]/15 hover:border-[#38BDF8]/30 transition">
+          <label className="block text-xs font-semibold text-[#F1F5F9] mb-2 flex items-center space-x-1.5">
+            <BookOpen className="w-3.5 h-3.5 text-[#06B6D4]" />
             <span>Current CGPA (out of 10)</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -135,17 +135,17 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="0.1"
               value={student.cgpa || 7.5}
               onChange={(e) => handleInputChange('cgpa', parseFloat(e.target.value))}
-              className="w-full accent-[#10B981] cursor-pointer h-1.5 bg-[#1D3028] rounded-lg"
+              className="w-full accent-[#06B6D4] cursor-pointer h-1.5 bg-[#1B2A4A] rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-[#E8EDE9] bg-[#151C19] px-2.5 py-0.5 rounded-lg border border-white/[0.08] min-w-[45px] text-center">
+            <span className="font-mono text-sm font-bold text-[#F1F5F9] bg-[#131C31] px-2.5 py-0.5 rounded-lg border border-[#38BDF8]/20 min-w-[45px] text-center">
               {student.cgpa?.toFixed(1) || '0.0'}
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#101613] border border-white/[0.08] hover:border-white/[0.14] transition">
-          <label className="block text-xs font-semibold text-[#E8EDE9] mb-2 flex items-center space-x-1.5">
-            <Award className="w-3.5 h-3.5 text-[#10B981]" />
+        <div className="p-3.5 rounded-xl bg-[#0D1527] border border-[#38BDF8]/15 hover:border-[#38BDF8]/30 transition">
+          <label className="block text-xs font-semibold text-[#F1F5F9] mb-2 flex items-center space-x-1.5">
+            <Award className="w-3.5 h-3.5 text-[#06B6D4]" />
             <span>Technical Projects Count</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -156,17 +156,17 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="1"
               value={student.projectsCount ?? 2}
               onChange={(e) => handleInputChange('projectsCount', parseInt(e.target.value))}
-              className="w-full accent-[#10B981] cursor-pointer h-1.5 bg-[#1D3028] rounded-lg"
+              className="w-full accent-[#06B6D4] cursor-pointer h-1.5 bg-[#1B2A4A] rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-[#E8EDE9] bg-[#151C19] px-2.5 py-0.5 rounded-lg border border-white/[0.08] min-w-[40px] text-center">
+            <span className="font-mono text-sm font-bold text-[#F1F5F9] bg-[#131C31] px-2.5 py-0.5 rounded-lg border border-[#38BDF8]/20 min-w-[40px] text-center">
               {student.projectsCount ?? 0}
             </span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-[#101613] border border-white/[0.08] hover:border-white/[0.14] transition">
-          <label className="block text-xs font-semibold text-[#E8EDE9] mb-2 flex items-center space-x-1.5">
-            <Briefcase className="w-3.5 h-3.5 text-[#10B981]" />
+        <div className="p-3.5 rounded-xl bg-[#0D1527] border border-[#38BDF8]/15 hover:border-[#38BDF8]/30 transition">
+          <label className="block text-xs font-semibold text-[#F1F5F9] mb-2 flex items-center space-x-1.5">
+            <Briefcase className="w-3.5 h-3.5 text-[#06B6D4]" />
             <span>Internships Count</span>
           </label>
           <div className="flex items-center space-x-3">
@@ -177,9 +177,9 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
               step="1"
               value={student.internshipsCount ?? 1}
               onChange={(e) => handleInputChange('internshipsCount', parseInt(e.target.value))}
-              className="w-full accent-[#10B981] cursor-pointer h-1.5 bg-[#1D3028] rounded-lg"
+              className="w-full accent-[#06B6D4] cursor-pointer h-1.5 bg-[#1B2A4A] rounded-lg"
             />
-            <span className="font-mono text-sm font-bold text-[#E8EDE9] bg-[#151C19] px-2.5 py-0.5 rounded-lg border border-white/[0.08] min-w-[40px] text-center">
+            <span className="font-mono text-sm font-bold text-[#F1F5F9] bg-[#131C31] px-2.5 py-0.5 rounded-lg border border-[#38BDF8]/20 min-w-[40px] text-center">
               {student.internshipsCount ?? 0}
             </span>
           </div>
@@ -188,8 +188,8 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
 
       {/* Technical Skill Level Sliders (1 to 5) */}
       <div className="pt-2">
-        <div className="text-xs font-semibold uppercase tracking-wider text-[#9CA9A1] mb-3 flex items-center space-x-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+        <div className="text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-3 flex items-center space-x-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#06B6D4]"></span>
           <span>Core Technical Competencies (1 to 5 Scale)</span>
         </div>
 
@@ -197,10 +197,10 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
           {CORE_SKILL_CATEGORIES.map((category) => {
             const currentScore = student.skills?.[category.key] || 3.0;
             return (
-              <div key={category.key} className="p-3.5 rounded-xl bg-[#101613] border border-white/[0.08] hover:border-white/[0.14] transition">
+              <div key={category.key} className="p-3.5 rounded-xl bg-[#0D1527] border border-[#38BDF8]/15 hover:border-[#38BDF8]/30 transition">
                 <div className="flex items-center justify-between text-xs mb-2">
-                  <span className="font-medium text-[#E8EDE9]">{category.label}</span>
-                  <span className="font-mono font-bold text-[#10B981] bg-[#1D3028] px-2 py-0.5 rounded border border-[#10B981]/20">
+                  <span className="font-medium text-[#F1F5F9]">{category.label}</span>
+                  <span className="font-mono font-bold text-[#06B6D4] bg-[#1B2A4A] px-2 py-0.5 rounded border border-[#06B6D4]/30">
                     {currentScore.toFixed(1)} / 5.0
                   </span>
                 </div>
@@ -211,7 +211,7 @@ export default function StudentProfileForm({ student, onUpdateStudent, onReset }
                   step="0.1"
                   value={currentScore}
                   onChange={(e) => handleSkillChange(category.key, e.target.value)}
-                  className="w-full accent-[#10B981] cursor-pointer h-1.5 bg-[#1D3028] rounded-lg"
+                  className="w-full accent-[#06B6D4] cursor-pointer h-1.5 bg-[#1B2A4A] rounded-lg"
                 />
               </div>
             );

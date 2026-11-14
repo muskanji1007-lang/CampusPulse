@@ -4,8 +4,8 @@
 
 @layer base {
   body {
-    background-color: #0B0F0E;
-    color: #E8EDE9;
+    background-color: #0A0F1D;
+    color: #F1F5F9;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -14,39 +14,39 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #E8EDE9;
+    color: #F1F5F9;
   }
 }
 
-/* Linear-style Minimalist Dark Scrollbar */
+/* Midnight Oceanic Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #101613;
+  background: #0D1527;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1D3028;
+  background: #1B2A4A;
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.12);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #263B32;
+  background: #23385D;
 }
 
-/* Obsidian Bento Card Panel */
+/* Midnight Oceanic Bento Card Panel */
 .glass-panel {
-  background-color: #151C19;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #131C31;
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  box-shadow: 0 4px 20px -4px rgba(2, 6, 23, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .glass-panel:hover {
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 0 8px 30px -4px rgba(6, 182, 212, 0.12), 0 0 0 1px rgba(56, 189, 248, 0.15);
 }

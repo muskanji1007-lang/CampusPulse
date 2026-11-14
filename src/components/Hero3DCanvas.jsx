@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 
 /**
- * Hero3DCanvas - Professional Placement Constellation Visualization
+ * Hero3DCanvas - Midnight Oceanic Placement Constellation Visualization
  * Mathematically projects 3D recruitment nodes (Companies, Skills, Student Criteria)
- * with restrained enterprise styling aligned with Obsidian + Emerald aesthetic.
+ * with vibrant cyan accents and oceanic navy atmosphere.
  */
 export default function Hero3DCanvas({ className = '' }) {
   const canvasRef = useRef(null);
@@ -106,7 +106,7 @@ export default function Hero3DCanvas({ className = '' }) {
 
       projected.sort((a, b) => a.z - b.z);
 
-      // Clean, subtle connecting lines (no excessive glow)
+      // Clean, subtle connecting lines in Cyan
       for (let i = 0; i < projected.length; i++) {
         for (let j = i + 1; j < projected.length; j++) {
           const dx = projected[i].x - projected[j].x;
@@ -114,9 +114,9 @@ export default function Hero3DCanvas({ className = '' }) {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 60) {
-            const lineAlpha = (1 - dist / 60) * Math.min(projected[i].alpha, projected[j].alpha) * 0.22;
+            const lineAlpha = (1 - dist / 60) * Math.min(projected[i].alpha, projected[j].alpha) * 0.35;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(16, 185, 129, ${lineAlpha})`;
+            ctx.strokeStyle = `rgba(6, 182, 212, ${lineAlpha})`;
             ctx.lineWidth = 0.75;
             ctx.moveTo(projected[i].x, projected[i].y);
             ctx.lineTo(projected[j].x, projected[j].y);
@@ -125,24 +125,28 @@ export default function Hero3DCanvas({ className = '' }) {
         }
       }
 
-      // Render crisp, restrained nodes (no heavy blur)
+      // Render nodes with Electric Cyan highlights
       for (let i = 0; i < projected.length; i++) {
         const p = projected[i];
 
         ctx.beginPath();
         if (p.isHighlight) {
-          ctx.arc(p.x, p.y, 3 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(16, 185, 129, ${p.alpha * 0.9})`;
+          ctx.arc(p.x, p.y, 3.2 * p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(6, 182, 212, ${p.alpha * 0.95})`;
+          ctx.shadowColor = '#06B6D4';
+          ctx.shadowBlur = 4;
         } else {
           ctx.arc(p.x, p.y, 1.8 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(156, 169, 161, ${p.alpha * 0.5})`;
+          ctx.fillStyle = `rgba(148, 163, 184, ${p.alpha * 0.5})`;
+          ctx.shadowBlur = 0;
         }
         ctx.fill();
 
         // Node labels
         if (p.label && p.z > -15) {
+          ctx.shadowBlur = 0;
           ctx.font = `${Math.max(9, Math.round(9.5 * p.scale))}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillStyle = `rgba(232, 237, 233, ${p.alpha * 0.85})`;
+          ctx.fillStyle = `rgba(241, 245, 249, ${p.alpha * 0.9})`;
           ctx.fillText(p.label, p.x + 5, p.y + 3);
         }
       }
