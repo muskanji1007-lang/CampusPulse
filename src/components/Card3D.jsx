@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 
 /**
- * Card3D - Interactive 3D Perspective Tilt Component
- * Calculates mouse coordinates relative to the card center to project real 3D rotation,
- * dynamic depth elevation (translateZ), and cursor glare sheen.
+ * Card3D - Subtle Interactive Tilt Component
+ * Provides restrained, professional perspective elevation inspired by Linear
+ * without excessive tilt or harsh neon reflections.
  */
-export default function Card3D({ children, className = '', depth = 15 }) {
+export default function Card3D({ children, className = '', depth = 6 }) {
   const cardRef = useRef(null);
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
@@ -20,21 +20,20 @@ export default function Card3D({ children, className = '', depth = 15 }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Calculate 3D angles based on cursor offset
+    // Subtle 3D angle calculation
     const rotX = ((y - centerY) / centerY) * -depth;
     const rotY = ((x - centerX) / centerX) * depth;
 
     setRotateX(rotX);
     setRotateY(rotY);
 
-    // Calculate glare position
+    // Subtle specular sheen
     const glareX = (x / rect.width) * 100;
     const glareY = (y / rect.height) * 100;
-    setGlarePos({ x: glareX, y: glareY, opacity: 0.15 });
+    setGlarePos({ x: glareX, y: glareY, opacity: 0.04 });
   };
 
   const handleMouseLeave = () => {
-    // Smooth reset back to flat state
     setRotateX(0);
     setRotateY(0);
     setGlarePos(prev => ({ ...prev, opacity: 0 }));
@@ -42,7 +41,7 @@ export default function Card3D({ children, className = '', depth = 15 }) {
 
   return (
     <div
-      style={{ perspective: '1100px' }}
+      style={{ perspective: '1200px' }}
       className="w-full"
     >
       <div
@@ -52,20 +51,20 @@ export default function Card3D({ children, className = '', depth = 15 }) {
         style={{
           transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transformStyle: 'preserve-3d',
-          transition: 'transform 0.15s ease-out',
+          transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
         className={`relative ${className}`}
       >
-        {/* Dynamic Light Sheen / 3D Glare */}
+        {/* Subtle, restrained sheen */}
         <div
           className="absolute inset-0 rounded-2xl pointer-events-none transition-opacity duration-300 z-30"
           style={{
-            background: `radial-gradient(circle 280px at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, ${glarePos.opacity}), transparent 70%)`,
+            background: `radial-gradient(circle 350px at ${glarePos.x}% ${glarePos.y}%, rgba(255, 255, 255, ${glarePos.opacity}), transparent 80%)`,
           }}
         />
         
-        {/* Card Content with 3D Depth */}
-        <div style={{ transform: 'translateZ(20px)', transformStyle: 'preserve-3d' }}>
+        {/* Card Content with subtle depth */}
+        <div style={{ transform: 'translateZ(6px)', transformStyle: 'preserve-3d' }}>
           {children}
         </div>
       </div>

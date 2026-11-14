@@ -8,29 +8,30 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts';
-import { Activity, AlertTriangle } from 'lucide-react';
+import { Activity, AlertCircle, CheckCircle2 } from 'lucide-react';
 import Card3D from './Card3D';
 
 export default function SkillRadarChart({ data = [] }) {
-  // Custom Recharts Tooltip styled in Magic UI Dark Theme
+  // Custom Recharts Tooltip styled in Obsidian + Emerald System
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       const item = payload[0].payload;
       return (
-        <div className="bg-dark-950 p-3 rounded-xl border border-white/10 shadow-2xl text-xs space-y-1 backdrop-blur-xl">
-          <div className="font-semibold text-white mb-1 flex items-center space-x-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <div className="bg-[#101613] p-3 rounded-xl border border-white/[0.08] shadow-xl text-xs space-y-1 backdrop-blur-md">
+          <div className="font-heading font-semibold text-[#E8EDE9] mb-1 flex items-center space-x-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
             <span>{item.subject}</span>
           </div>
-          <div className="text-emerald-400">Student Rating: <span className="font-mono font-bold">{item.studentScore} / 5</span></div>
-          <div className="text-zinc-400">Industry Standard: <span className="font-mono font-bold text-zinc-300">{item.industryStandard} / 5</span></div>
+          <div className="text-[#10B981]">Your Rating: <span className="font-mono font-bold">{item.studentScore} / 5</span></div>
+          <div className="text-[#9CA9A1]">Target Benchmark: <span className="font-mono font-bold text-[#F59E0B]">{item.industryStandard} / 5</span></div>
           {item.gap > 0 ? (
-            <div className="text-rose-400 font-semibold pt-1 border-t border-white/10">
+            <div className="text-[#F87171] font-semibold pt-1 border-t border-white/[0.08]">
               Gap: -{item.gap} pts
             </div>
           ) : (
-            <div className="text-emerald-400 font-semibold pt-1 border-t border-white/10">
-              Meets / Exceeds Benchmark
+            <div className="text-[#10B981] font-semibold pt-1 border-t border-white/[0.08] flex items-center space-x-1">
+              <CheckCircle2 className="w-3 h-3 inline text-[#10B981]" />
+              <span>Meets Benchmark</span>
             </div>
           )}
         </div>
@@ -40,54 +41,55 @@ export default function SkillRadarChart({ data = [] }) {
   };
 
   return (
-    <Card3D depth={18} className="h-full">
+    <Card3D depth={5} className="h-full">
       <div className="glass-panel p-6 rounded-2xl flex flex-col justify-between relative overflow-hidden h-full">
         <div>
+          {/* Header */}
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2.5">
-              <div className="p-1.5 rounded-lg bg-white/[0.05] border border-white/10 text-emerald-400">
+              <div className="p-1.5 rounded-lg bg-[#1D3028] border border-white/[0.08] text-[#10B981]">
                 <Activity className="w-4 h-4" />
               </div>
-              <h3 className="font-semibold text-sm text-white">Skill Gap Radar Matrix</h3>
+              <h3 className="font-heading font-semibold text-sm text-[#E8EDE9]">Skill Gap Radar Matrix</h3>
             </div>
             <div className="flex items-center space-x-3 text-xs">
               <div className="flex items-center space-x-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                <span className="text-zinc-200 font-medium">Your Profile</span>
+                <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                <span className="text-[#E8EDE9] font-medium text-[11px]">Your Profile</span>
               </div>
               <div className="flex items-center space-x-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span className="text-zinc-400">Target Standard</span>
+                <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+                <span className="text-[#9CA9A1] text-[11px]">Benchmark</span>
               </div>
             </div>
           </div>
-          <p className="text-xs text-zinc-400 mb-4">
+          <p className="text-xs text-[#9CA9A1] mb-4">
             Multi-dimensional competency assessment against Tier-1 hiring expectations.
           </p>
 
-          {/* Recharts Container with 3D Depth */}
-          <div style={{ transform: 'translateZ(30px)' }} className="w-full h-64">
+          {/* Recharts Container */}
+          <div className="w-full h-64">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="75%" data={data}>
-                <PolarGrid stroke="#27272A" strokeDasharray="3 3" />
+                <PolarGrid stroke="#263B32" strokeDasharray="3 3" />
                 <PolarAngleAxis
                   dataKey="subject"
-                  tick={{ fill: '#A1A1AA', fontSize: 10, fontWeight: 500 }}
+                  tick={{ fill: '#9CA9A1', fontSize: 10, fontWeight: 500, fontFamily: 'Inter' }}
                 />
                 <PolarRadiusAxis
                   angle={30}
                   domain={[0, 5]}
-                  tick={{ fill: '#52525B', fontSize: 9 }}
-                  stroke="#27272A"
+                  tick={{ fill: '#6E7D75', fontSize: 9, fontFamily: 'Inter' }}
+                  stroke="#263B32"
                 />
                 <Tooltip content={<CustomTooltip />} />
-                {/* Target Benchmark Radar */}
+                {/* Target Benchmark Radar in Amber */}
                 <Radar
-                  name="Industry Target"
+                  name="Industry Benchmark"
                   dataKey="industryStandard"
                   stroke="#F59E0B"
                   fill="#F59E0B"
-                  fillOpacity={0.08}
+                  fillOpacity={0.06}
                   strokeWidth={1.5}
                   strokeDasharray="4 4"
                 />
@@ -97,7 +99,7 @@ export default function SkillRadarChart({ data = [] }) {
                   dataKey="studentScore"
                   stroke="#10B981"
                   fill="#10B981"
-                  fillOpacity={0.25}
+                  fillOpacity={0.22}
                   strokeWidth={2}
                 />
               </RadarChart>
@@ -106,10 +108,10 @@ export default function SkillRadarChart({ data = [] }) {
         </div>
 
         {/* Identified Deficiencies Pills */}
-        <div style={{ transform: 'translateZ(15px)' }} className="pt-4 border-t border-white/[0.08]">
+        <div className="pt-4 border-t border-white/[0.08]">
           <div className="flex items-center justify-between text-[11px] mb-2">
-            <span className="font-semibold uppercase tracking-wider text-zinc-400">Immediate Gaps</span>
-            <span className="text-zinc-400 text-[10px]">Delta vs 4.0+ Benchmark</span>
+            <span className="font-semibold uppercase tracking-wider text-[#9CA9A1]">Identified Skill Gaps</span>
+            <span className="text-[#9CA9A1] text-[10px]">Delta vs 4.0+ Benchmark</span>
           </div>
           <div className="flex flex-wrap gap-1.5">
             {data
@@ -117,15 +119,18 @@ export default function SkillRadarChart({ data = [] }) {
               .map(d => (
                 <span
                   key={d.subject}
-                  className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-dark-950 border border-white/10 text-[11px] text-zinc-300"
+                  className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-lg bg-[#101613] border border-white/[0.08] text-[11px] text-[#E8EDE9]"
                 >
-                  <AlertTriangle className="w-3 h-3 text-amber-400" />
+                  <AlertCircle className="w-3 h-3 text-[#F87171]" />
                   <span>{d.subject}:</span>
-                  <span className="font-mono font-bold text-amber-400">-{d.gap}</span>
+                  <span className="font-mono font-bold text-[#F87171]">-{d.gap}</span>
                 </span>
               ))}
             {data.every(d => d.gap === 0) && (
-              <span className="text-xs text-emerald-400 font-medium">All core categories meet or exceed standard!</span>
+              <span className="text-xs text-[#10B981] font-medium flex items-center space-x-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
+                <span>All core categories meet or exceed standard benchmark!</span>
+              </span>
             )}
           </div>
         </div>

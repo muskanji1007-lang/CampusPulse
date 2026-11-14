@@ -17,12 +17,12 @@ export default function Sidebar({ activeTab, setActiveTab, readinessScore = 0 })
   ];
 
   return (
-    <aside className="w-full lg:w-64 shrink-0 flex flex-col justify-between p-4 bg-dark-900/70 border border-white/[0.08] rounded-2xl lg:min-h-[calc(100vh-6rem)] backdrop-blur-xl">
+    <aside className="w-full lg:w-64 shrink-0 flex flex-col justify-between p-4 bg-[#101613] border border-white/[0.08] rounded-2xl lg:min-h-[calc(100vh-6rem)]">
       <div className="space-y-6">
         {/* Navigation Category Label */}
         <div>
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 px-3 mb-2 flex items-center space-x-1.5">
-            <Cpu className="w-3.5 h-3.5 text-zinc-400" />
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-[#9CA9A1] px-3 mb-2 flex items-center space-x-1.5">
+            <Cpu className="w-3.5 h-3.5 text-[#9CA9A1]" />
             <span>Platform Navigation</span>
           </div>
           <nav className="space-y-1">
@@ -33,13 +33,13 @@ export default function Sidebar({ activeTab, setActiveTab, readinessScore = 0 })
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 ${
                     isActive
-                      ? 'bg-white/[0.08] text-white border border-white/15 shadow-sm font-semibold'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.03]'
+                      ? 'bg-[#1D3028] text-[#E8EDE9] border border-[#10B981]/25 font-semibold'
+                      : 'text-[#9CA9A1] hover:text-[#E8EDE9] hover:bg-[#151C19]'
                   }`}
                 >
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-zinc-400'}`} />
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#10B981]' : 'text-[#9CA9A1]'}`} />
                   <span>{item.label}</span>
                 </button>
               );
@@ -47,13 +47,13 @@ export default function Sidebar({ activeTab, setActiveTab, readinessScore = 0 })
           </nav>
         </div>
 
-        {/* Quick Placement Benchmark Info Box with Magic UI Pro Minimalism */}
-        <div className="p-3.5 rounded-xl bg-dark-950/80 border border-white/[0.07] text-xs space-y-2">
-          <div className="flex items-center space-x-2 text-zinc-300 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        {/* Scoring Weights Bento Card */}
+        <div className="p-3.5 rounded-xl bg-[#151C19] border border-white/[0.08] text-xs space-y-2">
+          <div className="flex items-center space-x-2 text-[#E8EDE9] font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
             <span>Scoring Weights</span>
           </div>
-          <p className="text-zinc-400 text-[11px] leading-relaxed">
+          <p className="text-[#9CA9A1] text-[11px] leading-relaxed">
             Evaluation metrics: DSA (30%), CGPA (25%), Projects (20%), Core CS (15%), Internships (10%).
           </p>
         </div>
@@ -61,16 +61,16 @@ export default function Sidebar({ activeTab, setActiveTab, readinessScore = 0 })
 
       {/* Bottom Readiness Summary Card */}
       <div className="pt-4 border-t border-white/[0.08] mt-6 lg:mt-0">
-        <div className="p-3.5 rounded-xl bg-dark-950/90 border border-white/10 flex items-center justify-between">
+        <div className="p-3.5 rounded-xl bg-[#151C19] border border-white/[0.08] flex items-center justify-between">
           <div>
-            <div className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">Live Readiness</div>
-            <div className="text-lg font-bold text-white flex items-center space-x-1.5">
+            <div className="text-[10px] text-[#9CA9A1] uppercase tracking-wider font-semibold">Live Readiness</div>
+            <div className="text-lg font-bold text-[#E8EDE9] flex items-center space-x-1.5 font-heading">
               <span>{readinessScore}%</span>
-              <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+              <TrendingUp className="w-3.5 h-3.5 text-[#10B981]" />
             </div>
           </div>
           <div className="text-right">
-            <span className="inline-block px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+            <span className="inline-block px-2 py-0.5 text-[10px] font-semibold rounded-full bg-[#1D3028] text-[#6EE7B7] border border-[#10B981]/20">
               Synced
             </span>
           </div>

@@ -4,48 +4,49 @@
 
 @layer base {
   body {
-    @apply bg-dark-950 text-zinc-100 font-sans min-h-screen antialiased;
-    background-color: #050507;
-    /* Magic UI signature subtle dot grid pattern */
-    background-image: 
-      radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-      radial-gradient(ellipse 70% 40% at 50% -10%, rgba(16, 185, 129, 0.08), transparent 70%);
-    background-size: 24px 24px, 100% 100%;
-    background-attachment: fixed;
+    background-color: #0B0F0E;
+    color: #E8EDE9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #E8EDE9;
   }
 }
 
-/* Minimalist Dark Scrollbar */
+/* Linear-style Minimalist Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050507;
+  background: #101613;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1A1A22;
+  background: #1D3028;
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2A2A36;
+  background: #263B32;
 }
 
-/* Magic UI Pro Bento Glass Panel */
+/* Obsidian Bento Card Panel */
 .glass-panel {
-  background: rgba(15, 15, 20, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: #151C19;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .glass-panel:hover {
   border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
 }

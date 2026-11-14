@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 
 /**
- * Hero3DCanvas - Interactive 3D Placement Constellation Sphere
- * Projects mathematical 3D nodes (Companies, Skills, Student Profiles)
- * onto a 2D HTML5 canvas with real-time perspective projection and mouse drag.
+ * Hero3DCanvas - Professional Placement Constellation Visualization
+ * Mathematically projects 3D recruitment nodes (Companies, Skills, Student Criteria)
+ * with restrained enterprise styling aligned with Obsidian + Emerald aesthetic.
  */
 export default function Hero3DCanvas({ className = '' }) {
   const canvasRef = useRef(null);
@@ -14,7 +14,6 @@ export default function Hero3DCanvas({ className = '' }) {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    // Set canvas dimensions
     let width = (canvas.width = canvas.parentElement.clientWidth || 320);
     let height = (canvas.height = canvas.parentElement.clientHeight || 200);
 
@@ -25,12 +24,12 @@ export default function Hero3DCanvas({ className = '' }) {
     };
     window.addEventListener('resize', handleResize);
 
-    // Generate 3D Spherical Nodes (Golden Spiral / Fibonacci Sphere)
-    const nodeCount = 42;
+    // Spherical node distribution (Fibonacci Sphere)
+    const nodeCount = 38;
     const radius = Math.min(width, height) * 0.42;
     const nodes = [];
 
-    const companyLabels = ['Google', 'Amazon', 'Microsoft', 'Razorpay', 'TCS', 'Cred', 'DSA', 'CGPA', 'React', 'System Design'];
+    const companyLabels = ['Google', 'Amazon', 'Microsoft', 'Razorpay', 'TCS', 'Cred', 'DSA', 'CGPA', 'System Design'];
 
     for (let i = 0; i < nodeCount; i++) {
       const phi = Math.acos(1 - (2 * (i + 0.5)) / nodeCount);
@@ -45,8 +44,8 @@ export default function Hero3DCanvas({ className = '' }) {
       });
     }
 
-    let angleX = 0.003;
-    let angleY = 0.005;
+    let angleX = 0.002;
+    let angleY = 0.0035;
     let mouseX = 0;
     let mouseY = 0;
 
@@ -54,17 +53,15 @@ export default function Hero3DCanvas({ className = '' }) {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left - width / 2;
       const y = e.clientY - rect.top - height / 2;
-      mouseX = x * 0.00015;
-      mouseY = y * 0.00015;
+      mouseX = x * 0.0001;
+      mouseY = y * 0.0001;
     };
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // 3D Rendering loop
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Rotate around X and Y axis
       const currentRotY = angleY + mouseX;
       const currentRotX = angleX + mouseY;
 
@@ -73,33 +70,28 @@ export default function Hero3DCanvas({ className = '' }) {
       const cosX = Math.cos(currentRotX);
       const sinX = Math.sin(currentRotX);
 
-      // Project 3D to 2D
       const projected = [];
-      const focalLength = 320;
+      const focalLength = 340;
       const centerX = width / 2;
       const centerY = height / 2;
 
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
 
-        // Rotate Y
         let x1 = node.x * cosY - node.z * sinY;
         let z1 = node.z * cosY + node.x * sinY;
 
-        // Rotate X
         let y1 = node.y * cosX - z1 * sinX;
         let z2 = z1 * cosX + node.y * sinX;
 
-        // Save rotated coordinates
         node.x = x1;
         node.y = y1;
         node.z = z2;
 
-        // 3D Perspective Projection
         const scale = focalLength / (focalLength + z2 + radius);
         const projX = x1 * scale + centerX;
         const projY = y1 * scale + centerY;
-        const alpha = Math.max(0.15, Math.min(1, (z2 + radius) / (2 * radius)));
+        const alpha = Math.max(0.12, Math.min(1, (z2 + radius) / (2 * radius)));
 
         projected.push({
           x: projX,
@@ -112,18 +104,17 @@ export default function Hero3DCanvas({ className = '' }) {
         });
       }
 
-      // Sort by Z for realistic depth
       projected.sort((a, b) => a.z - b.z);
 
-      // Draw interconnected 3D wireframe lines
+      // Clean, subtle connecting lines (no excessive glow)
       for (let i = 0; i < projected.length; i++) {
         for (let j = i + 1; j < projected.length; j++) {
           const dx = projected[i].x - projected[j].x;
           const dy = projected[i].y - projected[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 65) {
-            const lineAlpha = (1 - dist / 65) * Math.min(projected[i].alpha, projected[j].alpha) * 0.35;
+          if (dist < 60) {
+            const lineAlpha = (1 - dist / 60) * Math.min(projected[i].alpha, projected[j].alpha) * 0.22;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(16, 185, 129, ${lineAlpha})`;
             ctx.lineWidth = 0.75;
@@ -134,29 +125,25 @@ export default function Hero3DCanvas({ className = '' }) {
         }
       }
 
-      // Draw 3D nodes and floating labels
+      // Render crisp, restrained nodes (no heavy blur)
       for (let i = 0; i < projected.length; i++) {
         const p = projected[i];
 
         ctx.beginPath();
         if (p.isHighlight) {
-          ctx.arc(p.x, p.y, 3.5 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(52, 211, 153, ${p.alpha})`;
-          ctx.shadowColor = '#10B981';
-          ctx.shadowBlur = 8;
+          ctx.arc(p.x, p.y, 3 * p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(16, 185, 129, ${p.alpha * 0.9})`;
         } else {
-          ctx.arc(p.x, p.y, 2 * p.scale, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.7})`;
-          ctx.shadowBlur = 0;
+          ctx.arc(p.x, p.y, 1.8 * p.scale, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(156, 169, 161, ${p.alpha * 0.5})`;
         }
         ctx.fill();
 
-        // Render floating 3D text label for key companies/skills
-        if (p.label && p.z > -20) {
-          ctx.shadowBlur = 0;
-          ctx.font = `${Math.max(9, Math.round(10 * p.scale))}px "Plus Jakarta Sans", sans-serif`;
-          ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha * 0.85})`;
-          ctx.fillText(p.label, p.x + 6, p.y + 3);
+        // Node labels
+        if (p.label && p.z > -15) {
+          ctx.font = `${Math.max(9, Math.round(9.5 * p.scale))}px "Plus Jakarta Sans", sans-serif`;
+          ctx.fillStyle = `rgba(232, 237, 233, ${p.alpha * 0.85})`;
+          ctx.fillText(p.label, p.x + 5, p.y + 3);
         }
       }
 

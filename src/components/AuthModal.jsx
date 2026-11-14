@@ -54,35 +54,30 @@ export default function AuthModal({ onLoginSuccess }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div className="w-full max-w-md glass-panel p-6 sm:p-8 rounded-3xl relative overflow-hidden shadow-2xl border border-white/10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+      <div className="w-full max-w-md bg-[#151C19] p-6 sm:p-8 rounded-2xl relative overflow-hidden shadow-2xl border border-white/[0.08]">
         
-        {/* Subtle top spotlight glow */}
-        <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-24 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
         {/* Brand Header */}
         <div className="text-center space-y-2 mb-6">
-          <div className="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-b from-zinc-800 to-zinc-950 p-[1px] shadow-sm">
-            <div className="w-full h-full bg-dark-900 rounded-[15px] flex items-center justify-center border border-white/10">
-              <GraduationCap className="w-6 h-6 text-emerald-400" />
-            </div>
+          <div className="w-11 h-11 mx-auto rounded-xl bg-[#1D3028] border border-white/[0.08] flex items-center justify-center">
+            <GraduationCap className="w-5 h-5 text-[#10B981]" />
           </div>
-          <h2 className="text-xl font-bold text-white tracking-tight">
-            Campus<span className="text-zinc-400">Pulse</span> Authentication
+          <h2 className="text-xl font-bold font-heading text-[#E8EDE9] tracking-tight">
+            Campus<span className="text-[#9CA9A1]">Pulse</span> Authentication
           </h2>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-[#9CA9A1]">
             Sign in to access your placement readiness audit and personalized benchmarks.
           </p>
         </div>
 
-        {/* Quick Reviewer 1-Click Access Box (Tailored for Muskan) */}
-        <div className="mb-6 p-3.5 rounded-2xl bg-dark-950/80 border border-white/[0.08] space-y-2.5">
+        {/* Quick Reviewer 1-Click Access Box */}
+        <div className="mb-6 p-3.5 rounded-xl bg-[#101613] border border-white/[0.08] space-y-2.5">
           <div className="flex items-center justify-between text-[11px]">
-            <span className="font-semibold text-zinc-300 flex items-center space-x-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="font-semibold text-[#E8EDE9] flex items-center space-x-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-[#10B981]" />
               <span>1-Click Reviewer Access</span>
             </span>
-            <span className="text-emerald-400 text-[10px] font-medium">Instant Access</span>
+            <span className="text-[#6EE7B7] text-[10px] font-medium">Instant Access</span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             {DEMO_PROFILES.map((profile, i) => (
@@ -90,12 +85,12 @@ export default function AuthModal({ onLoginSuccess }) {
                 key={i}
                 type="button"
                 onClick={() => handleDemoSelect(profile)}
-                className="p-2.5 rounded-xl bg-zinc-900/90 hover:bg-zinc-800 border border-white/[0.07] hover:border-emerald-500/40 text-left transition text-xs group"
+                className="p-2.5 rounded-xl bg-[#151C19] hover:bg-[#1D3028] border border-white/[0.08] hover:border-[#10B981]/30 text-left transition text-xs group"
               >
-                <div className="font-semibold text-white group-hover:text-emerald-300 transition text-[11px] truncate">
+                <div className="font-semibold text-[#E8EDE9] group-hover:text-[#6EE7B7] transition text-[11px] truncate">
                   {profile.fullName}
                 </div>
-                <div className="text-[10px] text-zinc-400 truncate">
+                <div className="text-[10px] text-[#9CA9A1] truncate">
                   {profile.branch.includes('AIML') ? 'CSE (AI/ML)' : 'CSE (Data Science)'} • CGPA {profile.cgpa}
                 </div>
               </button>
@@ -104,14 +99,14 @@ export default function AuthModal({ onLoginSuccess }) {
         </div>
 
         {/* Tabs: Sign In vs Register */}
-        <div className="flex rounded-xl bg-dark-950 p-1 border border-white/[0.07] mb-5">
+        <div className="flex rounded-xl bg-[#101613] p-1 border border-white/[0.08] mb-5">
           <button
             type="button"
             onClick={() => setMode('signin')}
             className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
               mode === 'signin'
-                ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-[#1D3028] text-[#E8EDE9] border border-white/[0.08] shadow-sm'
+                : 'text-[#9CA9A1] hover:text-[#E8EDE9]'
             }`}
           >
             Sign In
@@ -121,8 +116,8 @@ export default function AuthModal({ onLoginSuccess }) {
             onClick={() => setMode('register')}
             className={`flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all ${
               mode === 'register'
-                ? 'bg-zinc-800 text-white shadow-sm'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-[#1D3028] text-[#E8EDE9] border border-white/[0.08] shadow-sm'
+                : 'text-[#9CA9A1] hover:text-[#E8EDE9]'
             }`}
           >
             Create Profile
@@ -133,36 +128,36 @@ export default function AuthModal({ onLoginSuccess }) {
         {mode === 'signin' ? (
           <form onSubmit={handleSignIn} className="space-y-3.5">
             <div>
-              <label className="block text-xs font-medium text-zinc-300 mb-1">College Email / Student ID</label>
+              <label className="block text-xs font-medium text-[#E8EDE9] mb-1">College Email / Student ID</label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-[#9CA9A1] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="muskan.gupta@college.edu"
-                  className="w-full pl-9 pr-3 py-2 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full pl-9 pr-3 py-2 rounded-xl bg-[#101613] border border-white/[0.08] text-xs text-[#E8EDE9] placeholder-[#6E7D75] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-300 mb-1">Password</label>
+              <label className="block text-xs font-medium text-[#E8EDE9] mb-1">Password</label>
               <div className="relative">
-                <Lock className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-[#9CA9A1] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full pl-9 pr-9 py-2 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full pl-9 pr-9 py-2 rounded-xl bg-[#101613] border border-white/[0.08] text-xs text-[#E8EDE9] placeholder-[#6E7D75] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="text-zinc-500 hover:text-zinc-300 absolute right-3 top-1/2 -translate-y-1/2"
+                  className="text-[#9CA9A1] hover:text-[#E8EDE9] absolute right-3 top-1/2 -translate-y-1/2"
                 >
                   {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                 </button>
@@ -171,52 +166,52 @@ export default function AuthModal({ onLoginSuccess }) {
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition flex items-center justify-center space-x-2 mt-4 shadow-sm"
+              className="w-full py-2.5 rounded-xl bg-[#10B981] hover:bg-[#6EE7B7] text-[#0B0F0E] font-semibold text-xs transition flex items-center justify-center space-x-2 mt-4 shadow-sm"
             >
               <span>Sign In to Candidate Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </form>
         ) : (
-          /* Form: Register Profile with Modern CS Branches */
+          /* Form: Register Profile */
           <form onSubmit={handleRegister} className="space-y-3">
             <div>
-              <label className="block text-[11px] font-medium text-zinc-300 mb-1">Full Name</label>
+              <label className="block text-[11px] font-medium text-[#E8EDE9] mb-1">Full Name</label>
               <div className="relative">
-                <User className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <User className="w-3.5 h-3.5 text-[#9CA9A1] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Muskan Gupta"
-                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#101613] border border-white/[0.08] text-xs text-[#E8EDE9] placeholder-[#6E7D75] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-zinc-300 mb-1">College Email</label>
+              <label className="block text-[11px] font-medium text-[#E8EDE9] mb-1">College Email</label>
               <div className="relative">
-                <Mail className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Mail className="w-3.5 h-3.5 text-[#9CA9A1] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="muskan@college.edu"
-                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#101613] border border-white/[0.08] text-xs text-[#E8EDE9] placeholder-[#6E7D75] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div>
-                <label className="block text-[11px] font-medium text-zinc-300 mb-1">Engineering Branch</label>
+                <label className="block text-[11px] font-medium text-[#E8EDE9] mb-1">Engineering Branch</label>
                 <select
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-[11px] text-zinc-200 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full px-2 py-1.5 rounded-xl bg-[#101613] border border-white/[0.08] text-[11px] text-[#E8EDE9] focus:outline-none focus:border-[#10B981]/50 transition"
                 >
                   <option value="CSE - Artificial Intelligence & Machine Learning (CSE-AIML)">CSE (AI & ML)</option>
                   <option value="CSE - Data Science (CSE-DS)">CSE (Data Science)</option>
@@ -227,7 +222,7 @@ export default function AuthModal({ onLoginSuccess }) {
               </div>
 
               <div>
-                <label className="block text-[11px] font-medium text-zinc-300 mb-1">Current CGPA</label>
+                <label className="block text-[11px] font-medium text-[#E8EDE9] mb-1">Current CGPA</label>
                 <input
                   type="number"
                   step="0.1"
@@ -235,28 +230,28 @@ export default function AuthModal({ onLoginSuccess }) {
                   max="10.0"
                   value={cgpa}
                   onChange={(e) => setCgpa(e.target.value)}
-                  className="w-full px-2 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-[11px] text-white focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full px-2 py-1.5 rounded-xl bg-[#101613] border border-white/[0.08] text-[11px] text-[#E8EDE9] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-[11px] font-medium text-zinc-300 mb-1">Target Dream Role</label>
+              <label className="block text-[11px] font-medium text-[#E8EDE9] mb-1">Target Dream Role</label>
               <div className="relative">
-                <Briefcase className="w-3.5 h-3.5 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <Briefcase className="w-3.5 h-3.5 text-[#9CA9A1] absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={targetRole}
                   onChange={(e) => setTargetRole(e.target.value)}
                   placeholder="e.g. Frontend Engineer / SDE-1"
-                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-dark-950 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500/60 transition"
+                  className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-[#101613] border border-white/[0.08] text-xs text-[#E8EDE9] placeholder-[#6E7D75] focus:outline-none focus:border-[#10B981]/50 transition"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition flex items-center justify-center space-x-2 mt-4 shadow-sm"
+              className="w-full py-2.5 rounded-xl bg-[#10B981] hover:bg-[#6EE7B7] text-[#0B0F0E] font-semibold text-xs transition flex items-center justify-center space-x-2 mt-4 shadow-sm"
             >
               <span>Register Profile & Launch Audit</span>
               <ArrowRight className="w-3.5 h-3.5" />
